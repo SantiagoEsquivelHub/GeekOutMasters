@@ -1,4 +1,4 @@
-package myProject;
+package GeekOutMasters;
 
 import javax.swing.*;
 import java.awt.*;

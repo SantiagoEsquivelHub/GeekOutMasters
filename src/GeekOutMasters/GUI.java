@@ -1,4 +1,4 @@
-package myProject;
+package GeekOutMasters;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +10,13 @@ import java.awt.*;
  */
 public class GUI extends JFrame {
 
+    public static final String MENSAJE_INICIO =
+            "Hola jugador, bienvenido a Geek Out Masters...";
+
     private Header headerProject;
+    private JPanel panelSaludo, panelDados, panelResultados;
+    private JTextArea mensajeInicio, resultadosDados;
+    private JButton poderesDados, reglasJuego, lanzar;
 
     /**
      * Constructor of GUI class
@@ -19,8 +25,8 @@ public class GUI extends JFrame {
         initGUI();
 
         //Default JFrame configuration
-        this.setTitle("The Title app");
-        this.setSize(200,100);
+        this.setTitle("Geek Out Masters");
+        this.setSize(500,500);
         //this.pack();
         this.setResizable(true);
         this.setVisible(true);
@@ -36,9 +42,26 @@ public class GUI extends JFrame {
         //Set up JFrame Container's Layout
         //Create Listener Object and Control Object
         //Set up JComponents
-        headerProject = new Header("Header ...", Color.BLACK);
-
+        headerProject = new Header("Geek Out Masters", Color.BLACK);
         this.add(headerProject,BorderLayout.NORTH); //Change this line if you change JFrame Container's Layout
+
+        poderesDados = new JButton("Poderes Dados");
+        reglasJuego = new JButton("Reglas");
+
+
+        mensajeInicio= new JTextArea();
+        mensajeInicio.setText(MENSAJE_INICIO);
+        mensajeInicio.setEditable(false);
+        mensajeInicio.setAlignmentX(CENTER_ALIGNMENT);
+        this.add(mensajeInicio);
+
+        panelSaludo = new JPanel();
+        panelSaludo.setPreferredSize(new Dimension(200,180));
+        panelSaludo.add(mensajeInicio);
+        panelSaludo.add(poderesDados);
+        panelSaludo.add(reglasJuego);
+        this.add(panelSaludo, BorderLayout.CENTER);
+
     }
 
     /**
