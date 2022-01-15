@@ -74,7 +74,7 @@ public class GUIGridBagLayout extends JFrame {
 
         poderesDados = new JButton("Poderes Dados");
         poderesDados.addActionListener(escucha);
-        poderesDados.addActionListener(escucha);
+
         constraints.gridx=0;
         constraints.gridy=1;
         constraints.gridwidth=1;
@@ -227,11 +227,11 @@ public class GUIGridBagLayout extends JFrame {
                 dado7.setIcon(imageDado7);
                 imageDado8 = new ImageIcon(getClass().getResource("/resourses/"+dados[7]+".jpeg"));
                 dado8.setIcon(imageDado8);
-                imageDado9 = new ImageIcon(getClass().getResource("/resourses"+dados[8]+".jpeg"));
+                imageDado9 = new ImageIcon(getClass().getResource("/resourses/"+dados[8]+".jpeg"));
                 dado9.setIcon(imageDado9);
-                imageDado10 = new ImageIcon(getClass().getResource("/resourses"+dados[9]+".jpeg"));
+                imageDado10 = new ImageIcon(getClass().getResource("/resourses/"+dados[9]+".jpeg"));
                 dado10.setIcon(imageDado10);
-            ;
+
                 /*
                 imageDado = new ImageIcon(getClass().getResource("/assets/"+caras[0]+".png"));
                 dado1.setIcon(imageDado);
