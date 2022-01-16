@@ -2,8 +2,7 @@ package GeekOutMasters;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class GUIGridBagLayout extends JFrame {
     public static final String MENSAJE_REGLAS =
@@ -28,16 +27,19 @@ public class GUIGridBagLayout extends JFrame {
     private JTextArea mensajeInicio, resultados;
     private JButton poderesDados, reglasJuego, lanzar;
     private Escucha escucha;
+    private EscuchaBotones escuchaBotones;
+    private EscuchaSuperHeroe escuchaSuperHeroe;
+    private EscuchaCohete escuchaCohete;
     private ModelGeek modelGeek;
-    private ImageIcon imageDado1, imageDado2,imageDado3,imageDado4,imageDado5,imageDado6,imageDado7, imageDado8,imageDado9,imageDado10;
-    private JLabel dado1, dado2,dado3, dado4,dado5, dado6,dado7, dado8,dado9, dado10;
+    private ImageIcon imagenDadoElegido, imageDado1, imageDado2,imageDado3,imageDado4,imageDado5,imageDado6,imageDado7, imageDado8,imageDado9,imageDado10;
+    private Dado dado1, dado2,dado3, dado4,dado5, dado6,dado7, dado8,dado9, dado10;
 
     public GUIGridBagLayout(){
         initGUI();
         //Default JFrame configuration
         this.setUndecorated(false);
         this.setTitle("Geek Out Masters");
-        this.setSize(600,600);
+        this.setSize(1000,900);
         this.pack();
         this.setResizable(true);
         this.setVisible(true);
@@ -53,6 +55,9 @@ public class GUIGridBagLayout extends JFrame {
         //Create Listener Object and Control Object
         //Set up JComponents
         escucha = new Escucha();
+        escuchaBotones = new EscuchaBotones();
+        escuchaSuperHeroe = new EscuchaSuperHeroe();
+        escuchaCohete = new EscuchaCohete();
         modelGeek = new ModelGeek();
         headerProject = new Header("Geek Out Masters", Color.BLACK);
         constraints.gridx=0;
@@ -97,7 +102,7 @@ public class GUIGridBagLayout extends JFrame {
         panelDadosUtilizados.setBorder(BorderFactory.createTitledBorder("Dados Utilizados"));
         constraints.gridx=0;
         constraints.gridy=2;
-        constraints.gridwidth=1;
+        constraints.gridwidth=2;
         constraints.fill=GridBagConstraints.BOTH;
         constraints.anchor=GridBagConstraints.CENTER;
         this.add(panelDadosUtilizados,constraints);
@@ -106,22 +111,30 @@ public class GUIGridBagLayout extends JFrame {
         panelDadosInactivos.setPreferredSize(new Dimension(300,250));
         panelDadosInactivos.setBorder(BorderFactory.createTitledBorder("Dados Inactivos"));
         constraints.gridx=1;
-        constraints.gridy=2;
+        constraints.gridy=3;
         constraints.gridwidth=1;
         constraints.fill=GridBagConstraints.BOTH;
         constraints.anchor=GridBagConstraints.CENTER;
         this.add(panelDadosInactivos,constraints);
 
-        dado1 = new JLabel();
-        dado2 = new JLabel();
-        dado3 = new JLabel();
-        dado4 = new JLabel();
-        dado5 = new JLabel();
-        dado6 = new JLabel();
-        dado7 = new JLabel();
-        dado8 = new JLabel();
-        dado9 = new JLabel();
-        dado10 = new JLabel();
+        dado1 = new Dado(1);
+        dado1.addMouseListener(escuchaBotones);
+        dado2 = new Dado(2);
+        dado2.addMouseListener(escuchaBotones);
+        dado3 = new Dado(3);
+        dado3.addMouseListener(escuchaBotones);
+        dado4 = new Dado(4);
+        dado4.addMouseListener(escuchaBotones);
+        dado5 = new Dado(5);
+        dado5.addMouseListener(escuchaBotones);
+        dado6 = new Dado(6);
+        dado6.addMouseListener(escuchaBotones);
+        dado7 = new Dado(1);
+        dado7.addMouseListener(escuchaBotones);
+        dado8 = new Dado(2);
+        dado9 = new Dado(3);
+        dado10 = new Dado(4);
+
 
         imageDado1 = new ImageIcon(getClass().getResource("/resourses/1.jpeg"));
         imageDado2 = new ImageIcon(getClass().getResource("/resourses/2.jpeg"));
@@ -129,10 +142,10 @@ public class GUIGridBagLayout extends JFrame {
         imageDado4 = new ImageIcon(getClass().getResource("/resourses/4.jpeg"));
         imageDado5 = new ImageIcon(getClass().getResource("/resourses/5.jpeg"));
         imageDado6 = new ImageIcon(getClass().getResource("/resourses/6.jpeg"));
-        imageDado7 = new ImageIcon(getClass().getResource("/resourses/2.jpeg"));
-        imageDado8 = new ImageIcon(getClass().getResource("/resourses/3.jpeg"));
-        imageDado9 = new ImageIcon(getClass().getResource("/resourses/4.jpeg"));
-        imageDado10 = new ImageIcon(getClass().getResource("/resourses/5.jpeg"));
+        imageDado7 = new ImageIcon(getClass().getResource("/resourses/1.jpeg"));
+        imageDado8 = new ImageIcon(getClass().getResource("/resourses/2.jpeg"));
+        imageDado9 = new ImageIcon(getClass().getResource("/resourses/3.jpeg"));
+        imageDado10 = new ImageIcon(getClass().getResource("/resourses/4.jpeg"));
 
 
         dado1.setIcon(imageDado1);
@@ -148,7 +161,7 @@ public class GUIGridBagLayout extends JFrame {
 
 
         panelDadosActivos= new JPanel();
-        panelDadosActivos.setPreferredSize(new Dimension(300,250));
+        panelDadosActivos.setPreferredSize(new Dimension(600,250));
         panelDadosActivos.setBorder(BorderFactory.createTitledBorder("Dados Activos"));
         panelDadosActivos.add(dado1);
         panelDadosActivos.add(dado2);
@@ -164,7 +177,7 @@ public class GUIGridBagLayout extends JFrame {
 
         constraints.gridx=0;
         constraints.gridy=3;
-        constraints.gridwidth=2;
+        constraints.gridwidth=1;
         constraints.fill=GridBagConstraints.BOTH;
         constraints.anchor=GridBagConstraints.CENTER;
         this.add(panelDadosActivos,constraints);
@@ -183,6 +196,7 @@ public class GUIGridBagLayout extends JFrame {
 
         resultados = new JTextArea(4, 31);
         resultados.setText("");
+        resultados.setEditable(false);
         resultados.setBorder(BorderFactory.createTitledBorder("Resultados"));
 
         constraints.gridx=0;
@@ -209,40 +223,28 @@ public class GUIGridBagLayout extends JFrame {
                 panelDadosInactivos.add(dado9);
                 panelDadosInactivos.add(dado10);
 
-                modelGeek.calcularTiro();
-                int[] dados = modelGeek.getCaras();
-                imageDado1 = new ImageIcon(getClass().getResource("/resourses/"+dados[0]+".jpeg"));
+
+                imageDado1 = new ImageIcon(getClass().getResource("/resourses/"+dado1.getCara()+".jpeg"));
                 dado1.setIcon(imageDado1);
-                imageDado2 = new ImageIcon(getClass().getResource("/resourses/"+dados[1]+".jpeg"));
+                imageDado2 = new ImageIcon(getClass().getResource("/resourses/"+dado2.getCara()+".jpeg"));
                 dado2.setIcon(imageDado2);
-                imageDado3 = new ImageIcon(getClass().getResource("/resourses/"+dados[2]+".jpeg"));
+                imageDado3 = new ImageIcon(getClass().getResource("/resourses/"+dado3.getCara()+".jpeg"));
                 dado3.setIcon(imageDado3);
-                imageDado4 = new ImageIcon(getClass().getResource("/resourses/"+dados[3]+".jpeg"));
+                imageDado4 = new ImageIcon(getClass().getResource("/resourses/"+dado4.getCara()+".jpeg"));
                 dado4.setIcon(imageDado4);
-                imageDado5 = new ImageIcon(getClass().getResource("/resourses/"+dados[4]+".jpeg"));
+                imageDado5 = new ImageIcon(getClass().getResource("/resourses/"+dado5.getCara()+".jpeg"));
                 dado5.setIcon(imageDado5);
-                imageDado6 = new ImageIcon(getClass().getResource("/resourses/"+dados[5]+".jpeg"));
+                imageDado6 = new ImageIcon(getClass().getResource("/resourses/"+dado6.getCara()+".jpeg"));
                 dado6.setIcon(imageDado6);
-                imageDado7 = new ImageIcon(getClass().getResource("/resourses/"+dados[6]+".jpeg"));
+                imageDado7 = new ImageIcon(getClass().getResource("/resourses/"+dado7.getCara()+".jpeg"));
                 dado7.setIcon(imageDado7);
-                imageDado8 = new ImageIcon(getClass().getResource("/resourses/"+dados[7]+".jpeg"));
+                imageDado8 = new ImageIcon(getClass().getResource("/resourses/"+dado8.getCara()+".jpeg"));
                 dado8.setIcon(imageDado8);
-                imageDado9 = new ImageIcon(getClass().getResource("/resourses/"+dados[8]+".jpeg"));
+                imageDado9 = new ImageIcon(getClass().getResource("/resourses/"+dado9.getCara()+".jpeg"));
                 dado9.setIcon(imageDado9);
-                imageDado10 = new ImageIcon(getClass().getResource("/resourses/"+dados[9]+".jpeg"));
+                imageDado10 = new ImageIcon(getClass().getResource("/resourses/"+dado10.getCara()+".jpeg"));
                 dado10.setIcon(imageDado10);
-
-                /*
-                imageDado = new ImageIcon(getClass().getResource("/assets/"+caras[0]+".png"));
-                dado1.setIcon(imageDado);
-                imageDado = new ImageIcon(getClass().getResource("/assets/"+caras[1]+".png"));
-                dado2.setIcon(imageDado);
-                modelGeek.determinarJuego();
-                resultadosDados.setText(modelGeek.getEstadoToString()[0]);
-                mensajeSalida.setText(modelGeek.getEstadoToString()[1]);
-                */
-
-
+              /*  lanzar.removeActionListener(escucha);*/
             }else{
                 if(e.getSource() == poderesDados){
                     JOptionPane.showMessageDialog(null,MENSAJE_PODERES);
@@ -252,6 +254,183 @@ public class GUIGridBagLayout extends JFrame {
             }
             revalidate();
             repaint();
+        }
+    }
+
+
+
+    private class EscuchaBotones extends MouseAdapter {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+
+            Dado dadoElegido = (Dado) e.getSource();
+
+            //SUPERHEROE
+
+                if (dadoElegido.getId() == 3){
+
+                    dado1.addMouseListener(escuchaSuperHeroe);
+                    dado2.addMouseListener(escuchaSuperHeroe);
+                    dado3.addMouseListener(escuchaSuperHeroe);
+                    dado4.addMouseListener(escuchaSuperHeroe);
+                    dado5.addMouseListener(escuchaSuperHeroe);
+                    dado6.addMouseListener(escuchaSuperHeroe);
+                    dado7.addMouseListener(escuchaSuperHeroe);
+                    dado8.addMouseListener(escuchaSuperHeroe);
+                    dado9.addMouseListener(escuchaSuperHeroe);
+                    dado10.addMouseListener(escuchaSuperHeroe);
+                    dadoElegido.removeMouseListener(escuchaSuperHeroe);
+                    panelDadosUtilizados.add(dadoElegido);
+
+            }
+            //COHETE
+                if(dadoElegido.getId() == 5){
+
+                    dado1.addMouseListener(escuchaCohete);
+                    dado2.addMouseListener(escuchaCohete);
+                    dado3.addMouseListener(escuchaCohete);
+                    dado4.addMouseListener(escuchaCohete);
+                    dado5.addMouseListener(escuchaCohete);
+                    dado6.addMouseListener(escuchaCohete);
+                    dado7.addMouseListener(escuchaCohete);
+                    dado8.addMouseListener(escuchaCohete);
+                    dado9.addMouseListener(escuchaCohete);
+                    dado10.addMouseListener(escuchaCohete);
+                    dadoElegido.removeMouseListener(escuchaCohete);
+                    panelDadosUtilizados.add(dadoElegido);
+
+                }
+
+
+
+
+            revalidate();
+            repaint();
+        }
+
+    }
+
+    private class EscuchaSuperHeroe extends MouseAdapter {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            Dado dadoElegido = (Dado) e.getSource();
+
+            //COHETE
+            if(dadoElegido.getId() == 5){
+
+                dadoElegido.removeMouseListener(escuchaCohete);
+                dadoElegido.getCaraContraria();
+                imagenDadoElegido = new ImageIcon(getClass().getResource("/resourses/"+dadoElegido.getId()+".jpeg"));
+                dadoElegido.setIcon(imagenDadoElegido);
+                dado1.removeMouseListener(escuchaSuperHeroe);
+                dado2.removeMouseListener(escuchaSuperHeroe);
+                dado3.removeMouseListener(escuchaSuperHeroe);
+                dado4.removeMouseListener(escuchaSuperHeroe);
+                dado5.removeMouseListener(escuchaSuperHeroe);
+                dado6.removeMouseListener(escuchaSuperHeroe);
+                dado7.removeMouseListener(escuchaSuperHeroe);
+                dado8.removeMouseListener(escuchaSuperHeroe);
+                dado9.removeMouseListener(escuchaSuperHeroe);
+                dado10.removeMouseListener(escuchaSuperHeroe);
+                panelDadosActivos.add(dadoElegido);
+                dadoElegido.addMouseListener(escuchaCohete);
+            }
+                //SUPERHEROE
+                if(dadoElegido.getId() == 3){
+
+                dadoElegido.removeMouseListener(escuchaSuperHeroe);
+                dadoElegido.getCaraContraria();
+                imagenDadoElegido = new ImageIcon(getClass().getResource("/resourses/"+dadoElegido.getId()+".jpeg"));
+                dadoElegido.setIcon(imagenDadoElegido);
+                panelDadosActivos.add(dadoElegido);
+                dado1.removeMouseListener(escuchaSuperHeroe);
+                dado2.removeMouseListener(escuchaSuperHeroe);
+                dado3.removeMouseListener(escuchaSuperHeroe);
+                dado4.removeMouseListener(escuchaSuperHeroe);
+                dado5.removeMouseListener(escuchaSuperHeroe);
+                dado6.removeMouseListener(escuchaSuperHeroe);
+                dado7.removeMouseListener(escuchaSuperHeroe);
+                dado8.removeMouseListener(escuchaSuperHeroe);
+                dado9.removeMouseListener(escuchaSuperHeroe);
+                dado10.removeMouseListener(escuchaSuperHeroe);
+
+            }else{
+
+                dadoElegido.getCaraContraria();
+                imagenDadoElegido = new ImageIcon(getClass().getResource("/resourses/"+dadoElegido.getId()+".jpeg"));
+                dadoElegido.setIcon(imagenDadoElegido);
+
+                dado1.removeMouseListener(escuchaSuperHeroe);
+                dado2.removeMouseListener(escuchaSuperHeroe);
+                dado3.removeMouseListener(escuchaSuperHeroe);
+                dado4.removeMouseListener(escuchaSuperHeroe);
+                dado5.removeMouseListener(escuchaSuperHeroe);
+                dado6.removeMouseListener(escuchaSuperHeroe);
+                dado7.removeMouseListener(escuchaSuperHeroe);
+                dado8.removeMouseListener(escuchaSuperHeroe);
+                dado9.removeMouseListener(escuchaSuperHeroe);
+                dado10.removeMouseListener(escuchaSuperHeroe);
+                dadoElegido.removeAll();
+            }
+        }
+    }
+
+    private class EscuchaCohete extends MouseAdapter {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            Dado dadoElegido = (Dado) e.getSource();
+            if(dadoElegido.getId() == 5){
+                dadoElegido.removeMouseListener(escuchaSuperHeroe);
+                panelDadosUtilizados.add(dadoElegido);
+                dado1.removeMouseListener(escuchaCohete);
+                dado2.removeMouseListener(escuchaCohete);
+                dado3.removeMouseListener(escuchaCohete);
+                dado4.removeMouseListener(escuchaCohete);
+                dado5.removeMouseListener(escuchaCohete);
+                dado6.removeMouseListener(escuchaCohete);
+                dado7.removeMouseListener(escuchaCohete);
+                dado8.removeMouseListener(escuchaCohete);
+                dado9.removeMouseListener(escuchaCohete);
+                dado10.removeMouseListener(escuchaCohete);
+
+                dado1.removeMouseListener(escuchaSuperHeroe);
+                dado2.removeMouseListener(escuchaSuperHeroe);
+                dado3.removeMouseListener(escuchaSuperHeroe);
+                dado4.removeMouseListener(escuchaSuperHeroe);
+                dado5.removeMouseListener(escuchaSuperHeroe);
+                dado6.removeMouseListener(escuchaSuperHeroe);
+                dado7.removeMouseListener(escuchaSuperHeroe);
+                dado8.removeMouseListener(escuchaSuperHeroe);
+                dado9.removeMouseListener(escuchaSuperHeroe);
+                dado10.removeMouseListener(escuchaSuperHeroe);
+
+            }else {
+                panelDadosUtilizados.add(dadoElegido);
+                dado1.removeMouseListener(escuchaCohete);
+                dado2.removeMouseListener(escuchaCohete);
+                dado3.removeMouseListener(escuchaCohete);
+                dado4.removeMouseListener(escuchaCohete);
+                dado5.removeMouseListener(escuchaCohete);
+                dado6.removeMouseListener(escuchaCohete);
+                dado7.removeMouseListener(escuchaCohete);
+                dado8.removeMouseListener(escuchaCohete);
+                dado9.removeMouseListener(escuchaCohete);
+                dado10.removeMouseListener(escuchaCohete);
+
+                dado1.removeMouseListener(escuchaSuperHeroe);
+                dado2.removeMouseListener(escuchaSuperHeroe);
+                dado3.removeMouseListener(escuchaSuperHeroe);
+                dado4.removeMouseListener(escuchaSuperHeroe);
+                dado5.removeMouseListener(escuchaSuperHeroe);
+                dado6.removeMouseListener(escuchaSuperHeroe);
+                dado7.removeMouseListener(escuchaSuperHeroe);
+                dado8.removeMouseListener(escuchaSuperHeroe);
+                dado9.removeMouseListener(escuchaSuperHeroe);
+                dado10.removeMouseListener(escuchaSuperHeroe);
+
+                dadoElegido.removeMouseListener(escuchaSuperHeroe);
+
+            }
         }
     }
 
