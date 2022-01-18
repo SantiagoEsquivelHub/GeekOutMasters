@@ -30,6 +30,7 @@ public class GUIGridBagLayout extends JFrame {
     private EscuchaBotones escuchaBotones;
     private EscuchaSuperHeroe escuchaSuperHeroe;
     private EscuchaCohete escuchaCohete;
+    private EscuchaMeeple escuchaMeeple;
     private ModelGeek modelGeek;
     private ImageIcon imagenDadoElegido, imageDado1, imageDado2,imageDado3,imageDado4,imageDado5,imageDado6,imageDado7, imageDado8,imageDado9,imageDado10;
     private Dado dado1, dado2,dado3, dado4,dado5, dado6,dado7, dado8,dado9, dado10;
@@ -59,6 +60,7 @@ public class GUIGridBagLayout extends JFrame {
         escuchaBotones = new EscuchaBotones();
         escuchaSuperHeroe = new EscuchaSuperHeroe();
         escuchaCohete = new EscuchaCohete();
+        escuchaMeeple = new EscuchaMeeple();
         modelGeek = new ModelGeek();
         headerProject = new Header("Geek Out Masters", Color.BLACK);
         constraints.gridx=0;
@@ -133,11 +135,11 @@ public class GUIGridBagLayout extends JFrame {
         dado7 = new Dado(1);
         dado7.addMouseListener(escuchaBotones);
         dado8 = new Dado(2);
-        dado8.addMouseListener(escuchaBotones);
+        /*dado8.addMouseListener(escuchaBotones);*/
         dado9 = new Dado(3);
-        dado9.addMouseListener(escuchaBotones);
+       /* dado9.addMouseListener(escuchaBotones);*/
         dado10 = new Dado(4);
-        dado10.addMouseListener(escuchaBotones);
+        /*dado10.addMouseListener(escuchaBotones);*/
 
         imageDado1 = new ImageIcon(getClass().getResource("/resourses/1.jpeg"));
         imageDado2 = new ImageIcon(getClass().getResource("/resourses/2.jpeg"));
@@ -288,9 +290,7 @@ public class GUIGridBagLayout extends JFrame {
                     dado5.addMouseListener(escuchaSuperHeroe);
                     dado6.addMouseListener(escuchaSuperHeroe);
                     dado7.addMouseListener(escuchaSuperHeroe);
-                    dado8.addMouseListener(escuchaSuperHeroe);
-                    dado9.addMouseListener(escuchaSuperHeroe);
-                    dado10.addMouseListener(escuchaSuperHeroe);
+
                     dadoElegido.removeMouseListener(escuchaSuperHeroe);
                     panelDadosUtilizados.add(dadoElegido);
 
@@ -305,13 +305,27 @@ public class GUIGridBagLayout extends JFrame {
                     dado5.addMouseListener(escuchaCohete);
                     dado6.addMouseListener(escuchaCohete);
                     dado7.addMouseListener(escuchaCohete);
-                    dado8.addMouseListener(escuchaCohete);
-                    dado9.addMouseListener(escuchaCohete);
-                    dado10.addMouseListener(escuchaCohete);
+
                     dadoElegido.removeMouseListener(escuchaCohete);
                     panelDadosUtilizados.add(dadoElegido);
 
                 }
+
+            //MEEPLE
+            if(dadoElegido.getId() == 4){
+
+                dado1.addMouseListener(escuchaMeeple);
+                dado2.addMouseListener(escuchaMeeple);
+                dado3.addMouseListener(escuchaMeeple);
+                dado4.addMouseListener(escuchaMeeple);
+                dado5.addMouseListener(escuchaMeeple);
+                dado6.addMouseListener(escuchaMeeple);
+                dado7.addMouseListener(escuchaMeeple);
+
+                dadoElegido.removeMouseListener(escuchaMeeple);
+                panelDadosUtilizados.add(dadoElegido);
+
+            }
             revalidate();
             repaint();
         }
@@ -337,20 +351,34 @@ public class GUIGridBagLayout extends JFrame {
                 dado5.removeMouseListener(escuchaSuperHeroe);
                 dado6.removeMouseListener(escuchaSuperHeroe);
                 dado7.removeMouseListener(escuchaSuperHeroe);
-                dado8.removeMouseListener(escuchaSuperHeroe);
-                dado9.removeMouseListener(escuchaSuperHeroe);
-                dado10.removeMouseListener(escuchaSuperHeroe);
-                panelDadosActivos.add(dadoElegido);
-                dadoElegido.addMouseListener(escuchaCohete);
-            }
-                //SUPERHEROE
-                if(dadoElegido.getId() == 3){
 
-                dadoElegido.removeMouseListener(escuchaSuperHeroe);
+                dado1.removeMouseListener(escuchaCohete);
+                dado2.removeMouseListener(escuchaCohete);
+                dado3.removeMouseListener(escuchaCohete);
+                dado4.removeMouseListener(escuchaCohete);
+                dado5.removeMouseListener(escuchaCohete);
+                dado6.removeMouseListener(escuchaCohete);
+                dado7.removeMouseListener(escuchaCohete);
+
+                panelDadosActivos.add(dadoElegido);
+
+
+            }else if(dadoElegido.getId() == 3){ //SUPERHEROE
+
                 dadoElegido.getCaraContraria();
                 imagenDadoElegido = new ImageIcon(getClass().getResource("/resourses/"+dadoElegido.getId()+".jpeg"));
                 dadoElegido.setIcon(imagenDadoElegido);
+                dadoElegido.removeMouseListener(escuchaSuperHeroe);
+
                 panelDadosActivos.add(dadoElegido);
+
+
+            }else if(dadoElegido.getId() == 1 || dadoElegido.getId() == 2 || dadoElegido.getId() == 4 || dadoElegido.getId() == 6){
+
+                dadoElegido.getCaraContraria();
+                imagenDadoElegido = new ImageIcon(getClass().getResource("/resourses/"+dadoElegido.getId()+".jpeg"));
+                dadoElegido.setIcon(imagenDadoElegido);
+
                 dado1.removeMouseListener(escuchaSuperHeroe);
                 dado2.removeMouseListener(escuchaSuperHeroe);
                 dado3.removeMouseListener(escuchaSuperHeroe);
@@ -358,28 +386,13 @@ public class GUIGridBagLayout extends JFrame {
                 dado5.removeMouseListener(escuchaSuperHeroe);
                 dado6.removeMouseListener(escuchaSuperHeroe);
                 dado7.removeMouseListener(escuchaSuperHeroe);
-                dado8.removeMouseListener(escuchaSuperHeroe);
-                dado9.removeMouseListener(escuchaSuperHeroe);
-                dado10.removeMouseListener(escuchaSuperHeroe);
+
 
             }else{
 
-                dadoElegido.getCaraContraria();
-                imagenDadoElegido = new ImageIcon(getClass().getResource("/resourses/"+dadoElegido.getId()+".jpeg"));
-                dadoElegido.setIcon(imagenDadoElegido);
-
-                dado1.removeMouseListener(escuchaSuperHeroe);
-                dado2.removeMouseListener(escuchaSuperHeroe);
-                dado3.removeMouseListener(escuchaSuperHeroe);
-                dado4.removeMouseListener(escuchaSuperHeroe);
-                dado5.removeMouseListener(escuchaSuperHeroe);
-                dado6.removeMouseListener(escuchaSuperHeroe);
-                dado7.removeMouseListener(escuchaSuperHeroe);
-                dado8.removeMouseListener(escuchaSuperHeroe);
-                dado9.removeMouseListener(escuchaSuperHeroe);
-                dado10.removeMouseListener(escuchaSuperHeroe);
-                dadoElegido.removeAll();
             }
+            revalidate();
+            repaint();
         }
     }
 
@@ -388,7 +401,7 @@ public class GUIGridBagLayout extends JFrame {
         public void mouseClicked(MouseEvent e) {
             Dado dadoElegido = (Dado) e.getSource();
             if(dadoElegido.getId() == 5){
-                dadoElegido.removeMouseListener(escuchaSuperHeroe);
+
                 panelDadosUtilizados.add(dadoElegido);
                 dado1.removeMouseListener(escuchaCohete);
                 dado2.removeMouseListener(escuchaCohete);
@@ -397,22 +410,9 @@ public class GUIGridBagLayout extends JFrame {
                 dado5.removeMouseListener(escuchaCohete);
                 dado6.removeMouseListener(escuchaCohete);
                 dado7.removeMouseListener(escuchaCohete);
-                dado8.removeMouseListener(escuchaCohete);
-                dado9.removeMouseListener(escuchaCohete);
-                dado10.removeMouseListener(escuchaCohete);
 
-                dado1.removeMouseListener(escuchaSuperHeroe);
-                dado2.removeMouseListener(escuchaSuperHeroe);
-                dado3.removeMouseListener(escuchaSuperHeroe);
-                dado4.removeMouseListener(escuchaSuperHeroe);
-                dado5.removeMouseListener(escuchaSuperHeroe);
-                dado6.removeMouseListener(escuchaSuperHeroe);
-                dado7.removeMouseListener(escuchaSuperHeroe);
-                dado8.removeMouseListener(escuchaSuperHeroe);
-                dado9.removeMouseListener(escuchaSuperHeroe);
-                dado10.removeMouseListener(escuchaSuperHeroe);
 
-            }else {
+            }else if(dadoElegido.getId() == 3){
                 panelDadosUtilizados.add(dadoElegido);
                 dado1.removeMouseListener(escuchaCohete);
                 dado2.removeMouseListener(escuchaCohete);
@@ -421,9 +421,7 @@ public class GUIGridBagLayout extends JFrame {
                 dado5.removeMouseListener(escuchaCohete);
                 dado6.removeMouseListener(escuchaCohete);
                 dado7.removeMouseListener(escuchaCohete);
-                dado8.removeMouseListener(escuchaCohete);
-                dado9.removeMouseListener(escuchaCohete);
-                dado10.removeMouseListener(escuchaCohete);
+
 
                 dado1.removeMouseListener(escuchaSuperHeroe);
                 dado2.removeMouseListener(escuchaSuperHeroe);
@@ -432,14 +430,122 @@ public class GUIGridBagLayout extends JFrame {
                 dado5.removeMouseListener(escuchaSuperHeroe);
                 dado6.removeMouseListener(escuchaSuperHeroe);
                 dado7.removeMouseListener(escuchaSuperHeroe);
-                dado8.removeMouseListener(escuchaSuperHeroe);
-                dado9.removeMouseListener(escuchaSuperHeroe);
-                dado10.removeMouseListener(escuchaSuperHeroe);
 
-                dadoElegido.removeMouseListener(escuchaSuperHeroe);
+            }else{
+                panelDadosUtilizados.add(dadoElegido);
+                dado1.removeMouseListener(escuchaCohete);
+                dado2.removeMouseListener(escuchaCohete);
+                dado3.removeMouseListener(escuchaCohete);
+                dado4.removeMouseListener(escuchaCohete);
+                dado5.removeMouseListener(escuchaCohete);
+                dado6.removeMouseListener(escuchaCohete);
+                dado7.removeMouseListener(escuchaCohete);
 
+                dadoElegido.removeMouseListener(escuchaBotones);
             }
+            revalidate();
+            repaint();
         }
     }
 
+    private class EscuchaMeeple extends MouseAdapter{
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            Dado dadoElegido = (Dado) e.getSource();
+
+            //COHETE
+            if(dadoElegido.getId() == 5){
+
+                dadoElegido.removeMouseListener(escuchaCohete);
+
+                imagenDadoElegido = new ImageIcon(getClass().getResource("/resourses/"+dadoElegido.getCara()+".jpeg"));
+                dadoElegido.setIcon(imagenDadoElegido);
+                dado1.removeMouseListener(escuchaMeeple);
+                dado2.removeMouseListener(escuchaMeeple);
+                dado3.removeMouseListener(escuchaMeeple);
+                dado4.removeMouseListener(escuchaMeeple);
+                dado5.removeMouseListener(escuchaMeeple);
+                dado6.removeMouseListener(escuchaMeeple);
+                dado7.removeMouseListener(escuchaMeeple);
+
+                dado1.removeMouseListener(escuchaCohete);
+                dado2.removeMouseListener(escuchaCohete);
+                dado3.removeMouseListener(escuchaCohete);
+                dado4.removeMouseListener(escuchaCohete);
+                dado5.removeMouseListener(escuchaCohete);
+                dado6.removeMouseListener(escuchaCohete);
+                dado7.removeMouseListener(escuchaCohete);
+
+                panelDadosActivos.add(dadoElegido);
+
+
+            }else if(dadoElegido.getId() == 3){//SUPERHEROE
+
+                dadoElegido.removeMouseListener(escuchaCohete);
+
+                imagenDadoElegido = new ImageIcon(getClass().getResource("/resourses/"+dadoElegido.getCara()+".jpeg"));
+                dadoElegido.setIcon(imagenDadoElegido);
+                dado1.removeMouseListener(escuchaMeeple);
+                dado2.removeMouseListener(escuchaMeeple);
+                dado3.removeMouseListener(escuchaMeeple);
+                dado4.removeMouseListener(escuchaMeeple);
+                dado5.removeMouseListener(escuchaMeeple);
+                dado6.removeMouseListener(escuchaMeeple);
+                dado7.removeMouseListener(escuchaMeeple);
+
+                dado1.removeMouseListener(escuchaSuperHeroe);
+                dado2.removeMouseListener(escuchaSuperHeroe);
+                dado3.removeMouseListener(escuchaSuperHeroe);
+                dado4.removeMouseListener(escuchaSuperHeroe);
+                dado5.removeMouseListener(escuchaSuperHeroe);
+                dado6.removeMouseListener(escuchaSuperHeroe);
+                dado7.removeMouseListener(escuchaSuperHeroe);
+
+                panelDadosActivos.add(dadoElegido);
+
+
+            }else if(dadoElegido.getId() == 4){ //MEEPLE
+                dado1.removeMouseListener(escuchaMeeple);
+                dado2.removeMouseListener(escuchaMeeple);
+                dado3.removeMouseListener(escuchaMeeple);
+                dado4.removeMouseListener(escuchaMeeple);
+                dado5.removeMouseListener(escuchaMeeple);
+                dado6.removeMouseListener(escuchaMeeple);
+                dado7.removeMouseListener(escuchaMeeple);
+
+                dado1.removeMouseListener(escuchaMeeple);
+                dado2.removeMouseListener(escuchaMeeple);
+                dado3.removeMouseListener(escuchaMeeple);
+                dado4.removeMouseListener(escuchaMeeple);
+                dado5.removeMouseListener(escuchaMeeple);
+                dado6.removeMouseListener(escuchaMeeple);
+                dado7.removeMouseListener(escuchaMeeple);
+
+                imagenDadoElegido = new ImageIcon(getClass().getResource("/resourses/"+dadoElegido.getCara()+".jpeg"));
+                dadoElegido.setIcon(imagenDadoElegido);
+                panelDadosActivos.add(dadoElegido);
+
+
+            }else if(dadoElegido.getId() == 1 || dadoElegido.getId() == 2 || dadoElegido.getId() == 6){
+
+
+                imagenDadoElegido = new ImageIcon(getClass().getResource("/resourses/"+dadoElegido.getCara()+".jpeg"));
+                dadoElegido.setIcon(imagenDadoElegido);
+
+                dado1.removeMouseListener(escuchaMeeple);
+                dado2.removeMouseListener(escuchaMeeple);
+                dado3.removeMouseListener(escuchaMeeple);
+                dado4.removeMouseListener(escuchaMeeple);
+                dado5.removeMouseListener(escuchaMeeple);
+                dado6.removeMouseListener(escuchaMeeple);
+                dado7.removeMouseListener(escuchaMeeple);
+
+
+            }else{
+
+            }
+            revalidate();
+            repaint();
+        }
+    }
 }
