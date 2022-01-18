@@ -34,6 +34,7 @@ public class GUIGridBagLayout extends JFrame {
     private ImageIcon imagenDadoElegido, imageDado1, imageDado2,imageDado3,imageDado4,imageDado5,imageDado6,imageDado7, imageDado8,imageDado9,imageDado10;
     private Dado dado1, dado2,dado3, dado4,dado5, dado6,dado7, dado8,dado9, dado10;
 
+
     public GUIGridBagLayout(){
         initGUI();
         //Default JFrame configuration
@@ -132,9 +133,11 @@ public class GUIGridBagLayout extends JFrame {
         dado7 = new Dado(1);
         dado7.addMouseListener(escuchaBotones);
         dado8 = new Dado(2);
+        dado8.addMouseListener(escuchaBotones);
         dado9 = new Dado(3);
+        dado9.addMouseListener(escuchaBotones);
         dado10 = new Dado(4);
-
+        dado10.addMouseListener(escuchaBotones);
 
         imageDado1 = new ImageIcon(getClass().getResource("/resourses/1.jpeg"));
         imageDado2 = new ImageIcon(getClass().getResource("/resourses/2.jpeg"));
@@ -194,10 +197,10 @@ public class GUIGridBagLayout extends JFrame {
         constraints.anchor=GridBagConstraints.CENTER;
         this.add(lanzar,constraints);
 
-        resultados = new JTextArea(4, 31);
-        resultados.setText("");
+        resultados = new JTextArea(6, 40);
         resultados.setEditable(false);
         resultados.setBorder(BorderFactory.createTitledBorder("Resultados"));
+
 
         constraints.gridx=0;
         constraints.gridy=5;
@@ -244,7 +247,16 @@ public class GUIGridBagLayout extends JFrame {
                 dado9.setIcon(imageDado9);
                 imageDado10 = new ImageIcon(getClass().getResource("/resourses/"+dado10.getCara()+".jpeg"));
                 dado10.setIcon(imageDado10);
-              /*  lanzar.removeActionListener(escucha);*/
+
+                resultados.setText("Ronda "+ modelGeek.sigronda() +
+                        "\nPuntuación Ronda "+ modelGeek.pointsRound() +
+                        "\nTotal acumulado "+ modelGeek.totalGame()
+                );
+
+
+
+
+                /*  lanzar.removeActionListener(escucha);*/
             }else{
                 if(e.getSource() == poderesDados){
                     JOptionPane.showMessageDialog(null,MENSAJE_PODERES);
@@ -300,10 +312,6 @@ public class GUIGridBagLayout extends JFrame {
                     panelDadosUtilizados.add(dadoElegido);
 
                 }
-
-
-
-
             revalidate();
             repaint();
         }
