@@ -31,6 +31,7 @@ public class GUIGridBagLayout extends JFrame {
     private EscuchaSuperHeroe escuchaSuperHeroe;
     private EscuchaCohete escuchaCohete;
     private EscuchaMeeple escuchaMeeple;
+    private EscuchaCorazon escuchaCorazon;
     private ModelGeek modelGeek;
     private ImageIcon imagenDadoElegido, imageDado1, imageDado2,imageDado3,imageDado4,imageDado5,imageDado6,imageDado7, imageDado8,imageDado9,imageDado10;
     private Dado dado1, dado2,dado3, dado4,dado5, dado6,dado7, dado8,dado9, dado10;
@@ -61,6 +62,7 @@ public class GUIGridBagLayout extends JFrame {
         escuchaSuperHeroe = new EscuchaSuperHeroe();
         escuchaCohete = new EscuchaCohete();
         escuchaMeeple = new EscuchaMeeple();
+        escuchaCorazon = new EscuchaCorazon();
         modelGeek = new ModelGeek();
         headerProject = new Header("Geek Out Masters", Color.BLACK);
         constraints.gridx=0;
@@ -135,11 +137,11 @@ public class GUIGridBagLayout extends JFrame {
         dado7 = new Dado(1);
         dado7.addMouseListener(escuchaBotones);
         dado8 = new Dado(2);
-        /*dado8.addMouseListener(escuchaBotones);*/
+
         dado9 = new Dado(3);
-       /* dado9.addMouseListener(escuchaBotones);*/
+
         dado10 = new Dado(4);
-        /*dado10.addMouseListener(escuchaBotones);*/
+
 
         imageDado1 = new ImageIcon(getClass().getResource("/resourses/1.jpeg"));
         imageDado2 = new ImageIcon(getClass().getResource("/resourses/2.jpeg"));
@@ -291,6 +293,8 @@ public class GUIGridBagLayout extends JFrame {
                     dado6.addMouseListener(escuchaSuperHeroe);
                     dado7.addMouseListener(escuchaSuperHeroe);
 
+
+
                     dadoElegido.removeMouseListener(escuchaSuperHeroe);
                     panelDadosUtilizados.add(dadoElegido);
 
@@ -305,6 +309,8 @@ public class GUIGridBagLayout extends JFrame {
                     dado5.addMouseListener(escuchaCohete);
                     dado6.addMouseListener(escuchaCohete);
                     dado7.addMouseListener(escuchaCohete);
+
+
 
                     dadoElegido.removeMouseListener(escuchaCohete);
                     panelDadosUtilizados.add(dadoElegido);
@@ -322,10 +328,32 @@ public class GUIGridBagLayout extends JFrame {
                 dado6.addMouseListener(escuchaMeeple);
                 dado7.addMouseListener(escuchaMeeple);
 
+
+
                 dadoElegido.removeMouseListener(escuchaMeeple);
                 panelDadosUtilizados.add(dadoElegido);
 
             }
+
+            //CORAZON
+            if(dadoElegido.getId() == 6){
+                dado1.removeMouseListener(escuchaBotones);
+                dado2.removeMouseListener(escuchaBotones);
+                dado3.removeMouseListener(escuchaBotones);
+                dado4.removeMouseListener(escuchaBotones);
+                dado5.removeMouseListener(escuchaBotones);
+                dado6.removeMouseListener(escuchaBotones);
+                dado7.removeMouseListener(escuchaBotones);
+
+                dado8.addMouseListener(escuchaCorazon);
+                dado9.addMouseListener(escuchaCorazon);
+                dado10.addMouseListener(escuchaCorazon);
+
+                dadoElegido.removeMouseListener(escuchaCorazon);
+                panelDadosUtilizados.add(dadoElegido);
+
+            }
+
             revalidate();
             repaint();
         }
@@ -373,7 +401,31 @@ public class GUIGridBagLayout extends JFrame {
                 panelDadosActivos.add(dadoElegido);
 
 
-            }else if(dadoElegido.getId() == 1 || dadoElegido.getId() == 2 || dadoElegido.getId() == 4 || dadoElegido.getId() == 6){
+                }else if(dadoElegido.getId() == 4){ //MEEPLE
+
+                dadoElegido.getCaraContraria();
+                imagenDadoElegido = new ImageIcon(getClass().getResource("/resourses/"+dadoElegido.getId()+".jpeg"));
+                dadoElegido.setIcon(imagenDadoElegido);
+                dadoElegido.removeMouseListener(escuchaMeeple);
+                dado1.removeMouseListener(escuchaMeeple);
+                dado2.removeMouseListener(escuchaMeeple);
+                dado3.removeMouseListener(escuchaMeeple);
+                dado4.removeMouseListener(escuchaMeeple);
+                dado5.removeMouseListener(escuchaMeeple);
+                dado6.removeMouseListener(escuchaMeeple);
+                dado7.removeMouseListener(escuchaMeeple);
+
+                dado1.removeMouseListener(escuchaSuperHeroe);
+                dado2.removeMouseListener(escuchaSuperHeroe);
+                dado3.removeMouseListener(escuchaSuperHeroe);
+                dado4.removeMouseListener(escuchaSuperHeroe);
+                dado5.removeMouseListener(escuchaSuperHeroe);
+                dado6.removeMouseListener(escuchaSuperHeroe);
+                dado7.removeMouseListener(escuchaSuperHeroe);
+                panelDadosActivos.add(dadoElegido);
+
+
+            }else if(dadoElegido.getId() == 1 || dadoElegido.getId() == 2 || dadoElegido.getId() == 6){
 
                 dadoElegido.getCaraContraria();
                 imagenDadoElegido = new ImageIcon(getClass().getResource("/resourses/"+dadoElegido.getId()+".jpeg"));
@@ -411,6 +463,14 @@ public class GUIGridBagLayout extends JFrame {
                 dado6.removeMouseListener(escuchaCohete);
                 dado7.removeMouseListener(escuchaCohete);
 
+                dado1.removeMouseListener(escuchaCohete);
+                dado2.removeMouseListener(escuchaCohete);
+                dado3.removeMouseListener(escuchaCohete);
+                dado4.removeMouseListener(escuchaCohete);
+                dado5.removeMouseListener(escuchaCohete);
+                dado6.removeMouseListener(escuchaCohete);
+                dado7.removeMouseListener(escuchaCohete);
+
 
             }else if(dadoElegido.getId() == 3){
                 panelDadosUtilizados.add(dadoElegido);
@@ -430,6 +490,25 @@ public class GUIGridBagLayout extends JFrame {
                 dado5.removeMouseListener(escuchaSuperHeroe);
                 dado6.removeMouseListener(escuchaSuperHeroe);
                 dado7.removeMouseListener(escuchaSuperHeroe);
+
+            }else if(dadoElegido.getId() == 4){
+                panelDadosUtilizados.add(dadoElegido);
+                dado1.removeMouseListener(escuchaCohete);
+                dado2.removeMouseListener(escuchaCohete);
+                dado3.removeMouseListener(escuchaCohete);
+                dado4.removeMouseListener(escuchaCohete);
+                dado5.removeMouseListener(escuchaCohete);
+                dado6.removeMouseListener(escuchaCohete);
+                dado7.removeMouseListener(escuchaCohete);
+
+
+                dado1.removeMouseListener(escuchaMeeple);
+                dado2.removeMouseListener(escuchaMeeple);
+                dado3.removeMouseListener(escuchaMeeple);
+                dado4.removeMouseListener(escuchaMeeple);
+                dado5.removeMouseListener(escuchaMeeple);
+                dado6.removeMouseListener(escuchaMeeple);
+                dado7.removeMouseListener(escuchaMeeple);
 
             }else{
                 panelDadosUtilizados.add(dadoElegido);
@@ -481,7 +560,6 @@ public class GUIGridBagLayout extends JFrame {
 
             }else if(dadoElegido.getId() == 3){//SUPERHEROE
 
-                dadoElegido.removeMouseListener(escuchaCohete);
 
                 imagenDadoElegido = new ImageIcon(getClass().getResource("/resourses/"+dadoElegido.getCara()+".jpeg"));
                 dadoElegido.setIcon(imagenDadoElegido);
@@ -547,5 +625,253 @@ public class GUIGridBagLayout extends JFrame {
             revalidate();
             repaint();
         }
+    }
+
+    private class EscuchaCorazon extends MouseAdapter {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            Dado dadoElegido = (Dado) e.getSource();
+
+            //COHETE
+            if(dadoElegido.getId() == 5){
+
+                dadoElegido.removeMouseListener(escuchaCohete);
+
+                imagenDadoElegido = new ImageIcon(getClass().getResource("/resourses/"+dadoElegido.getCara()+".jpeg"));
+                dadoElegido.setIcon(imagenDadoElegido);
+                dado1.removeMouseListener(escuchaCorazon);
+                dado2.removeMouseListener(escuchaCorazon);
+                dado3.removeMouseListener(escuchaCorazon);
+                dado4.removeMouseListener(escuchaCorazon);
+                dado5.removeMouseListener(escuchaCorazon);
+                dado6.removeMouseListener(escuchaCorazon);
+                dado7.removeMouseListener(escuchaCorazon);
+                dado8.removeMouseListener(escuchaCorazon);
+                dado9.removeMouseListener(escuchaCorazon);
+                dado10.removeMouseListener(escuchaCorazon);
+
+                dado1.removeMouseListener(escuchaCorazon);
+                dado2.removeMouseListener(escuchaCorazon);
+                dado3.removeMouseListener(escuchaCorazon);
+                dado4.removeMouseListener(escuchaCorazon);
+                dado5.removeMouseListener(escuchaCorazon);
+                dado6.removeMouseListener(escuchaCorazon);
+                dado7.removeMouseListener(escuchaCorazon);
+                dado8.removeMouseListener(escuchaCorazon);
+                dado9.removeMouseListener(escuchaCorazon);
+                dado10.removeMouseListener(escuchaCorazon);
+
+                dado1.removeMouseListener(escuchaCohete);
+                dado2.removeMouseListener(escuchaCohete);
+                dado3.removeMouseListener(escuchaCohete);
+                dado4.removeMouseListener(escuchaCohete);
+                dado5.removeMouseListener(escuchaCohete);
+                dado6.removeMouseListener(escuchaCohete);
+                dado7.removeMouseListener(escuchaCohete);
+
+                dado1.addMouseListener(escuchaBotones);
+                dado2.addMouseListener(escuchaBotones);
+                dado3.addMouseListener(escuchaBotones);
+                dado4.addMouseListener(escuchaBotones);
+                dado5.addMouseListener(escuchaBotones);
+                dado6.addMouseListener(escuchaBotones);
+                dado7.addMouseListener(escuchaBotones);
+
+                panelDadosActivos.add(dadoElegido);
+
+                /*if(dadoElegido.getId() == 3){
+                    dadoElegido.addMouseListener(escuchaSuperHeroe);
+
+                }else if(dadoElegido.getId() == 4){
+                    dadoElegido.addMouseListener(escuchaMeeple);
+
+                }else if(dadoElegido.getId() == 5){
+                    dadoElegido.addMouseListener(escuchaCohete);
+                    panelDadosUtilizados.add(dadoElegido);
+
+                }else if(dadoElegido.getId()== 6){
+                    dadoElegido.addMouseListener(escuchaCorazon);
+
+                }else{
+
+                }*/
+
+            }else if(dadoElegido.getId() == 3){//SUPERHEROE
+
+
+
+                imagenDadoElegido = new ImageIcon(getClass().getResource("/resourses/"+dadoElegido.getCara()+".jpeg"));
+                dadoElegido.setIcon(imagenDadoElegido);
+                dado1.removeMouseListener(escuchaCorazon);
+                dado2.removeMouseListener(escuchaCorazon);
+                dado3.removeMouseListener(escuchaCorazon);
+                dado4.removeMouseListener(escuchaCorazon);
+                dado5.removeMouseListener(escuchaCorazon);
+                dado6.removeMouseListener(escuchaCorazon);
+                dado7.removeMouseListener(escuchaCorazon);
+                dado8.removeMouseListener(escuchaCorazon);
+                dado9.removeMouseListener(escuchaCorazon);
+                dado10.removeMouseListener(escuchaCorazon);
+
+                dado1.removeMouseListener(escuchaCorazon);
+                dado2.removeMouseListener(escuchaCorazon);
+                dado3.removeMouseListener(escuchaCorazon);
+                dado4.removeMouseListener(escuchaCorazon);
+                dado5.removeMouseListener(escuchaCorazon);
+                dado6.removeMouseListener(escuchaCorazon);
+                dado7.removeMouseListener(escuchaCorazon);
+                dado8.removeMouseListener(escuchaCorazon);
+                dado9.removeMouseListener(escuchaCorazon);
+                dado10.removeMouseListener(escuchaCorazon);
+
+                dado1.removeMouseListener(escuchaSuperHeroe);
+                dado2.removeMouseListener(escuchaSuperHeroe);
+                dado3.removeMouseListener(escuchaSuperHeroe);
+                dado4.removeMouseListener(escuchaSuperHeroe);
+                dado5.removeMouseListener(escuchaSuperHeroe);
+                dado6.removeMouseListener(escuchaSuperHeroe);
+                dado7.removeMouseListener(escuchaSuperHeroe);
+
+                dado1.addMouseListener(escuchaBotones);
+                dado2.addMouseListener(escuchaBotones);
+                dado3.addMouseListener(escuchaBotones);
+                dado4.addMouseListener(escuchaBotones);
+                dado5.addMouseListener(escuchaBotones);
+                dado6.addMouseListener(escuchaBotones);
+                dado7.addMouseListener(escuchaBotones);
+
+                panelDadosActivos.add(dadoElegido);
+
+
+            }else if(dadoElegido.getId() == 6){ //CORAZON
+
+                dadoElegido.removeMouseListener(escuchaMeeple);
+
+                imagenDadoElegido = new ImageIcon(getClass().getResource("/resourses/"+dadoElegido.getCara()+".jpeg"));
+                dadoElegido.setIcon(imagenDadoElegido);
+                dado1.removeMouseListener(escuchaCorazon);
+                dado2.removeMouseListener(escuchaCorazon);
+                dado3.removeMouseListener(escuchaCorazon);
+                dado4.removeMouseListener(escuchaCorazon);
+                dado5.removeMouseListener(escuchaCorazon);
+                dado6.removeMouseListener(escuchaCorazon);
+                dado7.removeMouseListener(escuchaCorazon);
+                dado8.removeMouseListener(escuchaCorazon);
+                dado9.removeMouseListener(escuchaCorazon);
+                dado10.removeMouseListener(escuchaCorazon);
+
+                dado1.removeMouseListener(escuchaCorazon);
+                dado2.removeMouseListener(escuchaCorazon);
+                dado3.removeMouseListener(escuchaCorazon);
+                dado4.removeMouseListener(escuchaCorazon);
+                dado5.removeMouseListener(escuchaCorazon);
+                dado6.removeMouseListener(escuchaCorazon);
+                dado7.removeMouseListener(escuchaCorazon);
+                dado8.removeMouseListener(escuchaCorazon);
+                dado9.removeMouseListener(escuchaCorazon);
+                dado10.removeMouseListener(escuchaCorazon);
+
+                dado1.addMouseListener(escuchaBotones);
+                dado2.addMouseListener(escuchaBotones);
+                dado3.addMouseListener(escuchaBotones);
+                dado4.addMouseListener(escuchaBotones);
+                dado5.addMouseListener(escuchaBotones);
+                dado6.addMouseListener(escuchaBotones);
+                dado7.addMouseListener(escuchaBotones);
+
+                panelDadosActivos.add(dadoElegido);
+
+            }else if(dadoElegido.getId() == 4){ //MEEPLE
+
+                dadoElegido.removeMouseListener(escuchaMeeple);
+
+                imagenDadoElegido = new ImageIcon(getClass().getResource("/resourses/"+dadoElegido.getCara()+".jpeg"));
+                dadoElegido.setIcon(imagenDadoElegido);
+                dado1.removeMouseListener(escuchaCorazon);
+                dado2.removeMouseListener(escuchaCorazon);
+                dado3.removeMouseListener(escuchaCorazon);
+                dado4.removeMouseListener(escuchaCorazon);
+                dado5.removeMouseListener(escuchaCorazon);
+                dado6.removeMouseListener(escuchaCorazon);
+                dado7.removeMouseListener(escuchaCorazon);
+                dado8.removeMouseListener(escuchaCorazon);
+                dado9.removeMouseListener(escuchaCorazon);
+                dado10.removeMouseListener(escuchaCorazon);
+
+                dado1.removeMouseListener(escuchaCorazon);
+                dado2.removeMouseListener(escuchaCorazon);
+                dado3.removeMouseListener(escuchaCorazon);
+                dado4.removeMouseListener(escuchaCorazon);
+                dado5.removeMouseListener(escuchaCorazon);
+                dado6.removeMouseListener(escuchaCorazon);
+                dado7.removeMouseListener(escuchaCorazon);
+                dado8.removeMouseListener(escuchaCorazon);
+                dado9.removeMouseListener(escuchaCorazon);
+                dado10.removeMouseListener(escuchaCorazon);
+
+                dado1.removeMouseListener(escuchaMeeple);
+                dado2.removeMouseListener(escuchaMeeple);
+                dado3.removeMouseListener(escuchaMeeple);
+                dado4.removeMouseListener(escuchaMeeple);
+                dado5.removeMouseListener(escuchaMeeple);
+                dado6.removeMouseListener(escuchaMeeple);
+                dado7.removeMouseListener(escuchaMeeple);
+
+                dado1.addMouseListener(escuchaBotones);
+                dado2.addMouseListener(escuchaBotones);
+                dado3.addMouseListener(escuchaBotones);
+                dado4.addMouseListener(escuchaBotones);
+                dado5.addMouseListener(escuchaBotones);
+                dado6.addMouseListener(escuchaBotones);
+                dado7.addMouseListener(escuchaBotones);
+
+                panelDadosActivos.add(dadoElegido);
+
+            }else if(dadoElegido.getId() == 1 || dadoElegido.getId() == 2){
+
+
+                imagenDadoElegido = new ImageIcon(getClass().getResource("/resourses/"+dadoElegido.getCara()+".jpeg"));
+                dadoElegido.setIcon(imagenDadoElegido);
+
+                dado1.removeMouseListener(escuchaCorazon);
+                dado2.removeMouseListener(escuchaCorazon);
+                dado3.removeMouseListener(escuchaCorazon);
+                dado4.removeMouseListener(escuchaCorazon);
+                dado5.removeMouseListener(escuchaCorazon);
+                dado6.removeMouseListener(escuchaCorazon);
+                dado7.removeMouseListener(escuchaCorazon);
+                dado8.removeMouseListener(escuchaCorazon);
+                dado9.removeMouseListener(escuchaCorazon);
+                dado10.removeMouseListener(escuchaCorazon);
+
+                dado1.removeMouseListener(escuchaCorazon);
+                dado2.removeMouseListener(escuchaCorazon);
+                dado3.removeMouseListener(escuchaCorazon);
+                dado4.removeMouseListener(escuchaCorazon);
+                dado5.removeMouseListener(escuchaCorazon);
+                dado6.removeMouseListener(escuchaCorazon);
+                dado7.removeMouseListener(escuchaCorazon);
+                dado8.removeMouseListener(escuchaCorazon);
+                dado9.removeMouseListener(escuchaCorazon);
+                dado10.removeMouseListener(escuchaCorazon);
+
+                dado1.addMouseListener(escuchaBotones);
+                dado2.addMouseListener(escuchaBotones);
+                dado3.addMouseListener(escuchaBotones);
+                dado4.addMouseListener(escuchaBotones);
+                dado5.addMouseListener(escuchaBotones);
+                dado6.addMouseListener(escuchaBotones);
+                dado7.addMouseListener(escuchaBotones);
+
+                panelDadosActivos.add(dadoElegido);
+                dado8.removeMouseListener(escuchaBotones);
+                dado9.removeMouseListener(escuchaBotones);
+                dado10.removeMouseListener(escuchaBotones);
+            }else{
+
+            }
+            revalidate();
+            repaint();
+    }
     }
 }
