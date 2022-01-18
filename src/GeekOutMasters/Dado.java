@@ -1,6 +1,7 @@
 package GeekOutMasters;
 
 import javax.swing.*;
+import java.awt.event.MouseListener;
 import java.util.Random;
 
 /**
@@ -53,5 +54,20 @@ public class Dado extends JLabel {
 
     public int getId() {
         return id;
+    }
+
+    public void getFuncionalidad() {
+     /*   if(id == 3){
+            MouseListener escuchaSuperHeroe = null;
+            Dado.addMouseListener(escuchaSuperHeroe);
+        }else if(id == 4){
+            addMouseListener(escuchaMeeple);
+        }else if(id == 5){
+            addMouseListener(escuchaCohete);
+        }else if(id == 6){
+            addMouseListener(escuchaMeCorazon);
+        }else{
+            id = 0;
+        }*/
     }
 }
