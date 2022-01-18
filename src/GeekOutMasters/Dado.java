@@ -1,5 +1,6 @@
 package GeekOutMasters;
 
+import javax.swing.*;
 import java.util.Random;
 
 /**
@@ -9,9 +10,13 @@ import java.util.Random;
  * @date 13/01/2022
  */
 
-public class Dado {
+public class Dado extends JLabel {
 
     private int cara;
+    private int id;
+    public Dado(int id){
+    this.id = id;
+    }
 
     /**
      * method: generate a random value to cara
@@ -24,7 +29,29 @@ public class Dado {
     public int getCara() {
         Random aleatorio = new Random();
         cara = aleatorio.nextInt(6)+1;
+        this.id=cara;
         return cara;
     }
 
+    public void getCaraContraria() {
+        if(id == 1){
+            id = 6;
+        }else if(id == 6){
+            id = 1;
+        }else if(id == 2){
+            id = 3;
+        }else if(id == 3){
+            id = 2;
+        }else if(id == 4){
+            id = 5;
+        }else if(id == 5){
+            id = 4;
+        }else{
+            id = 0;
+        }
+    }
+
+    public int getId() {
+        return id;
+    }
 }
