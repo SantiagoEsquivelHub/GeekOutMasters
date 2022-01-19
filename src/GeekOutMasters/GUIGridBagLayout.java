@@ -645,6 +645,11 @@ public class GUIGridBagLayout extends JFrame {
                 dado10.removeMouseListener(escuchaCorazon);
 
 
+                dado8.removeMouseListener(escuchaCorazon);
+                dado9.removeMouseListener(escuchaCorazon);
+                dado10.removeMouseListener(escuchaCorazon);
+
+
                 dado1.addMouseListener(escuchaBotones);
                 dado2.addMouseListener(escuchaBotones);
                 dado3.addMouseListener(escuchaBotones);
@@ -666,6 +671,38 @@ public class GUIGridBagLayout extends JFrame {
                 dado10.removeMouseListener(escuchaCorazon);
 
 
+                dado8.removeMouseListener(escuchaCorazon);
+                dado9.removeMouseListener(escuchaCorazon);
+                dado10.removeMouseListener(escuchaCorazon);
+
+
+                dado1.addMouseListener(escuchaBotones);
+                dado2.addMouseListener(escuchaBotones);
+                dado3.addMouseListener(escuchaBotones);
+                dado4.addMouseListener(escuchaBotones);
+                dado5.addMouseListener(escuchaBotones);
+                dado6.addMouseListener(escuchaBotones);
+                dado7.addMouseListener(escuchaBotones);
+                dadoElegido.addMouseListener(escuchaBotones);
+                panelDadosActivos.add(dadoElegido);
+
+            }else if(dadoElegido.getId() == 3){//SUPERHEROE
+
+
+
+                imagenDadoElegido = new ImageIcon(getClass().getResource("/resourses/"+dadoElegido.getCara()+".jpeg"));
+                dadoElegido.setIcon(imagenDadoElegido);
+
+                dado8.removeMouseListener(escuchaCorazon);
+                dado9.removeMouseListener(escuchaCorazon);
+                dado10.removeMouseListener(escuchaCorazon);
+
+
+                dado8.removeMouseListener(escuchaCorazon);
+                dado9.removeMouseListener(escuchaCorazon);
+                dado10.removeMouseListener(escuchaCorazon);
+
+
                 dado1.addMouseListener(escuchaBotones);
                 dado2.addMouseListener(escuchaBotones);
                 dado3.addMouseListener(escuchaBotones);
@@ -677,6 +714,7 @@ public class GUIGridBagLayout extends JFrame {
                 panelDadosActivos.add(dadoElegido);
 
 
+
             }else if(dadoElegido.getId() == 6){ //CORAZON
 
                 dadoElegido.removeMouseListener(escuchaCorazon);
@@ -684,7 +722,11 @@ public class GUIGridBagLayout extends JFrame {
                 imagenDadoElegido = new ImageIcon(getClass().getResource("/resourses/"+dadoElegido.getCara()+".jpeg"));
                 dadoElegido.setIcon(imagenDadoElegido);
 
-                dado7.removeMouseListener(escuchaCorazon);
+                dado8.removeMouseListener(escuchaCorazon);
+                dado9.removeMouseListener(escuchaCorazon);
+                dado10.removeMouseListener(escuchaCorazon);
+
+
                 dado8.removeMouseListener(escuchaCorazon);
                 dado9.removeMouseListener(escuchaCorazon);
                 dado10.removeMouseListener(escuchaCorazon);
@@ -706,6 +748,10 @@ public class GUIGridBagLayout extends JFrame {
 
                 imagenDadoElegido = new ImageIcon(getClass().getResource("/resourses/"+dadoElegido.getCara()+".jpeg"));
                 dadoElegido.setIcon(imagenDadoElegido);
+                dado8.removeMouseListener(escuchaCorazon);
+                dado9.removeMouseListener(escuchaCorazon);
+                dado10.removeMouseListener(escuchaCorazon);
+
 
                 dado8.removeMouseListener(escuchaCorazon);
                 dado9.removeMouseListener(escuchaCorazon);
@@ -724,12 +770,19 @@ public class GUIGridBagLayout extends JFrame {
 
             }else if(dadoElegido.getId() == 1 || dadoElegido.getId() == 2){
 
+
                 imagenDadoElegido = new ImageIcon(getClass().getResource("/resourses/"+dadoElegido.getCara()+".jpeg"));
                 dadoElegido.setIcon(imagenDadoElegido);
 
                 dado8.removeMouseListener(escuchaCorazon);
                 dado9.removeMouseListener(escuchaCorazon);
                 dado10.removeMouseListener(escuchaCorazon);
+
+
+                dado8.removeMouseListener(escuchaCorazon);
+                dado9.removeMouseListener(escuchaCorazon);
+                dado10.removeMouseListener(escuchaCorazon);
+
 
                 dado1.addMouseListener(escuchaBotones);
                 dado2.addMouseListener(escuchaBotones);
@@ -740,7 +793,6 @@ public class GUIGridBagLayout extends JFrame {
                 dado7.addMouseListener(escuchaBotones);
                 dadoElegido.addMouseListener(escuchaBotones);
                 panelDadosActivos.add(dadoElegido);
-
             }else{
 
             }
