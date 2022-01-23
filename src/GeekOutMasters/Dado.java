@@ -56,6 +56,7 @@ public class Dado extends JLabel {
         return id;
     }
 
+
     public void getFuncionalidad() {
      /*   if(id == 3){
             MouseListener escuchaSuperHeroe = null;
@@ -70,4 +71,5 @@ public class Dado extends JLabel {
             id = 0;
         }*/
     }
+
 }
