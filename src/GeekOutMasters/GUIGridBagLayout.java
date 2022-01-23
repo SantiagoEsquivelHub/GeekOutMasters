@@ -194,6 +194,7 @@ public class GUIGridBagLayout extends JFrame {
         resultadosID = panelDadosActivos.getComponents();
 
 /*
+
         for (int i = 0; i < resultadosID.length; i++)
         {
             resultadoDados[i] = ((Dado) resultadosID[i]).getId();
