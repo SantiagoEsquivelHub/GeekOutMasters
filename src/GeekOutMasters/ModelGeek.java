@@ -7,7 +7,7 @@ import java.awt.*;
 public class ModelGeek {
     //dado1 y dado2 son son los objetos que permiten mostrar el valor de la cara visible del dado
     private Dado dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10;
-    private int tiro = 1 , punto, estado;
+    private int tiro = 1 , punto, estado, puntajeTotal;
     private String[] estadoToString;
     public int[] dados, dadosActivos, dadosUtilizados;
     public Component[] resultadosID;
@@ -112,11 +112,11 @@ public class ModelGeek {
 
 
     public int totalGame(int puntajeRonda) {
-        int puntajeTotal = puntajeRonda;
+        puntajeTotal+=puntajeRonda;
         if(puntajeRonda == 0){
             puntajeTotal = 0;
         }else{
-           return puntajeTotal+puntajeRonda;
+           return puntajeTotal;
         }
         return puntajeTotal;
     }
