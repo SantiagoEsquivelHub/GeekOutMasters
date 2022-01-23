@@ -11,6 +11,7 @@ public class ModelGeek {
     private String[] estadoToString;
     public int[] dados, dadosActivos, dadosUtilizados;
     public Component[] resultadosID;
+    private int puntajeTotal;
 
     /**
      * Class Constructor
@@ -64,64 +65,74 @@ public class ModelGeek {
 
 
 
-    public int resultadoDados( Component[] resultadosID ,int[] vector ){
+    public int resultadoDados( Component[] resultadosID ,int[] vector, int rondaDeJuego ){
+if(rondaDeJuego == 1){
+    return 0;
+}else {
+    int puntajePorRonda = 0;
 
-        int puntajePorRonda = 0;
+    for (int i = 0; i < resultadosID.length; i++) {
+        vector[i] = ((Dado) resultadosID[i]).getId();
+    }
 
-        for (int i = 0; i < resultadosID.length; i++)
-        {
-            vector[i] = ((Dado) resultadosID[i]).getId();
+    for (int i = 0; i < vector.length; i++) {
+        if (vector[i] == 1) {
+            puntajePorRonda++;
         }
-
-        for (int i = 0; i < vector.length; i++)
-        {
-            if (vector[i]==1){
-                puntajePorRonda++;
-            }
-            if (vector[i]==2) {
-                puntajePorRonda = 0;
-            }
+        if (vector[i] == 2) {
+            puntajePorRonda = 0;
         }
+    }
 
-        switch (puntajePorRonda){
-            case 0: puntajePorRonda = 0;
-                break;
-            case 1: puntajePorRonda = 1 ;
-                break;
-            case 2: puntajePorRonda = 3;
-                break;
-            case 3: puntajePorRonda = 6;
-                break;
-            case 4:puntajePorRonda = 10;
-                break;
-            case 5: puntajePorRonda = 15;
-                break;
-            case 6:puntajePorRonda = 21;
-                break;
-            case 7:puntajePorRonda = 28;
-                break;
-            case 8:puntajePorRonda = 36;
-                break;
-            case 9:puntajePorRonda = 45;
-                break;
-            case 10:puntajePorRonda = 55;
-                break;
-        }
-        return puntajePorRonda;
+    switch (puntajePorRonda) {
+        case 0:
+            puntajePorRonda = 0;
+            break;
+        case 1:
+            puntajePorRonda = 1;
+            break;
+        case 2:
+            puntajePorRonda = 3;
+            break;
+        case 3:
+            puntajePorRonda = 6;
+            break;
+        case 4:
+            puntajePorRonda = 10;
+            break;
+        case 5:
+            puntajePorRonda = 15;
+            break;
+        case 6:
+            puntajePorRonda = 21;
+            break;
+        case 7:
+            puntajePorRonda = 28;
+            break;
+        case 8:
+            puntajePorRonda = 36;
+            break;
+        case 9:
+            puntajePorRonda = 45;
+            break;
+        case 10:
+            puntajePorRonda = 55;
+            break;
+    }
+    return puntajePorRonda;
+}
     }
 
 
     public int totalGame(int puntajeRonda) {
-        int puntajeTotal = puntajeRonda;
+         puntajeTotal += puntajeRonda;
         if(puntajeRonda == 0){
             puntajeTotal = 0;
         }else{
-           return puntajeTotal+puntajeRonda;
+           return puntajeTotal;
         }
         return puntajeTotal;
     }
-
-
 
 
 
