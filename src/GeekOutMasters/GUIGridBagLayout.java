@@ -23,8 +23,8 @@ public class GUIGridBagLayout extends JFrame {
     "El Dragón es la cara que queremos evitar, ya que si al final de la ronda es el último dado activo que queda se habrán perdido todos los puntos ganados.";
 
     private Header headerProject;
-    private JPanel panelSaludo, panelDadosUtilizados, panelDadosInactivos, panelDadosActivos, panelResultados;
-    private JTextArea mensajeInicio, resultados;
+    private JPanel panelSaludo, panelDadosUtilizados, panelDadosInactivos, panelDadosActivos, panelComponents;
+    private JTextArea mensajeInicio, resultados,panelComponents2;
     private JButton poderesDados, reglasJuego, lanzar;
     private Escucha escucha;
     private EscuchaBotones escuchaBotones;
@@ -34,6 +34,8 @@ public class GUIGridBagLayout extends JFrame {
     private ModelGeek modelGeek;
     private ImageIcon imagenDadoElegido, imageDado1, imageDado2,imageDado3,imageDado4,imageDado5,imageDado6,imageDado7, imageDado8,imageDado9,imageDado10;
     private Dado dado1, dado2,dado3, dado4,dado5, dado6,dado7, dado8,dado9, dado10;
+    private int[] resultadoDados = new int[10];
+    private Component[] resultadosID ;
 
 
     public GUIGridBagLayout(){
@@ -55,6 +57,7 @@ public class GUIGridBagLayout extends JFrame {
         GridBagConstraints constraints = new GridBagConstraints();
 
         //Create Listener Object and Control Object
+
         //Set up JComponents
         escucha = new Escucha();
         escuchaBotones = new EscuchaBotones();
@@ -175,9 +178,10 @@ public class GUIGridBagLayout extends JFrame {
         panelDadosActivos.add(dado5);
         panelDadosActivos.add(dado6);
         panelDadosActivos.add(dado7);
-        panelDadosActivos.add(dado8);
-        panelDadosActivos.add(dado9);
-        panelDadosActivos.add(dado10);
+        panelDadosInactivos.add(dado8);
+        panelDadosInactivos.add(dado9);
+        panelDadosInactivos.add(dado10);
+
 
 
         constraints.gridx=0;
@@ -187,7 +191,35 @@ public class GUIGridBagLayout extends JFrame {
         constraints.anchor=GridBagConstraints.CENTER;
         this.add(panelDadosActivos,constraints);
 
+        resultadosID = panelDadosActivos.getComponents();
 
+/*
+        for (int i = 0; i < resultadosID.length; i++)
+        {
+            resultadoDados[i] = ((Dado) resultadosID[i]).getId();
+        }
+
+        panelComponents = new JPanel();
+        panelComponents.setPreferredSize(new Dimension(600,250));
+        panelComponents.setBorder(BorderFactory.createTitledBorder("componenetes Dados Activos"));
+
+        panelComponents2 = new JTextArea(10, 40);
+        panelComponents2.setEditable(false);
+        panelComponents2.setBorder(BorderFactory.createTitledBorder("Array de componenter"));
+
+
+        for (int i = 0; i < resultadoDados.length; i++)
+        {
+            panelComponents2.append(String.valueOf(resultadoDados[i]));
+        }
+        constraints.gridx=0;
+        constraints.gridy=7;
+        constraints.gridwidth=2;
+        constraints.fill=GridBagConstraints.BOTH;
+        constraints.anchor=GridBagConstraints.CENTER;
+        this.add(panelComponents,constraints);
+        panelComponents.add(panelComponents2);
+*/
 
 
         lanzar = new JButton("Lanzar");
@@ -223,11 +255,10 @@ public class GUIGridBagLayout extends JFrame {
     private class Escucha implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(e.getSource() == lanzar){
-                panelDadosInactivos.add(dado8);
-                panelDadosInactivos.add(dado9);
-                panelDadosInactivos.add(dado10);
+            int contadorRonda = modelGeek.resultadoDados(resultadosID,resultadoDados);
 
+
+            if(e.getSource() == lanzar){
 
                 imageDado1 = new ImageIcon(getClass().getResource("/resourses/"+dado1.getCara()+".jpeg"));
                 dado1.setIcon(imageDado1);
@@ -251,14 +282,22 @@ public class GUIGridBagLayout extends JFrame {
                 dado10.setIcon(imageDado10);
 
                 resultados.setText("Ronda "+ modelGeek.sigronda() +
-                        "\nPuntuación Ronda "+ modelGeek.pointsRound() +
-                        "\nTotal acumulado "+ modelGeek.totalGame()
+                        "\nPuntuación Ronda "+ contadorRonda +
+                        "\nTotal acumulado "+ modelGeek.totalGame(contadorRonda)
                 );
 
+                panelDadosActivos.add(dado1);
+                panelDadosActivos.add(dado2);
+                panelDadosActivos.add(dado3);
+                panelDadosActivos.add(dado4);
+                panelDadosActivos.add(dado5);
+                panelDadosActivos.add(dado6);
+                panelDadosActivos.add(dado7);
+                panelDadosInactivos.add(dado8);
+                panelDadosInactivos.add(dado9);
+                panelDadosInactivos.add(dado10);
 
 
-
-                /*  lanzar.removeActionListener(escucha);*/
             }else{
                 if(e.getSource() == poderesDados){
                     JOptionPane.showMessageDialog(null,MENSAJE_PODERES);

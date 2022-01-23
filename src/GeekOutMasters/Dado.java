@@ -54,4 +54,6 @@ public class Dado extends JLabel {
     public int getId() {
         return id;
     }
+
+
 }
