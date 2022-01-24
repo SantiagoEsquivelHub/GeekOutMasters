@@ -274,25 +274,25 @@ public class GUIGridBagLayout extends JFrame {
     private class Escucha implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            int contadorRonda = modelGeek.sigronda();
+            int contadorRonda = modelGeek.getronda();
             int resultadoRonda = modelGeek.resultadoDados(resultadosID,resultadoDados, contadorRonda);
             int puntajeAcumulado = modelGeek.totalGame(resultadoRonda);
-            if(puntajeAcumulado >3&& contadorRonda < 5){
+            if(puntajeAcumulado > 6 && contadorRonda < 5){
                 JOptionPane.showMessageDialog(null,
                         "GANASTE \n"
-                        +"Obtuviste 3 puntos",
+                        +"Obtuviste "+puntajeAcumulado +" puntos en menos de "+ contadorRonda +" rondas",
                         "PopUp Dialog",
                         JOptionPane.INFORMATION_MESSAGE);
-              contadorRonda = 0; resultadoRonda = 0;  puntajeAcumulado = 0;
+              contadorRonda = modelGeek.reset(); resultadoRonda = 0;  puntajeAcumulado = 0;
             }
 
-            if(contadorRonda ==6){
+            if(contadorRonda == 6){
                 JOptionPane.showMessageDialog(null,
                         "PERDISTE \n"
-                        +"Ya jugaste 5 rondas",
+                                +"Obtuviste "+puntajeAcumulado +" puntos en menos de "+ contadorRonda +" rondas",
                         "PopUp Dialog",
                         JOptionPane.INFORMATION_MESSAGE);
-                if(e.getSource() == lanzar){ contadorRonda = 0; resultadoRonda = 0;  puntajeAcumulado = 0;
+                if(e.getSource() == lanzar){ contadorRonda = modelGeek.reset(); resultadoRonda = 0;  puntajeAcumulado = 0;
                 }
             }
 
@@ -323,7 +323,7 @@ public class GUIGridBagLayout extends JFrame {
                 imageDado10 = new ImageIcon(getClass().getResource("/resourses/"+dado10.getCara()+".jpeg"));
                 dado10.setIcon(imageDado10);
 
-                resultados.setText("Ronda "+ contadorRonda +
+                resultados.setText("Ronda "+ modelGeek.sigronda() +
                         "\nPuntuación Ronda "+ resultadoRonda +
                         "\nTotal acumulado "+ puntajeAcumulado
                 );

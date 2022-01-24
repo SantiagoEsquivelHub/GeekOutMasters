@@ -7,11 +7,11 @@ import java.awt.*;
 public class ModelGeek {
     //dado1 y dado2 son son los objetos que permiten mostrar el valor de la cara visible del dado
     private Dado dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10;
-    private int tiro = 1 , punto, estado, puntajeTotal;
+    private int tiro , punto, estado, puntajeTotal;
     private String[] estadoToString;
     public int[] dados, dadosActivos, dadosUtilizados;
     public Component[] resultadosID;
-    private int puntajeTotal;
+
 
     /**
      * Class Constructor
@@ -50,19 +50,16 @@ public class ModelGeek {
     }
 
     public int getronda() {
-        return tiro=1;
+        return tiro;
+    }
+
+    public int reset (){
+        return tiro =0;
     }
 
     public int sigronda() {
         return tiro++;
     }
-
-    public int pointsRound() {
-        return punto ;
-    }
-
-
-
 
 
     public int resultadoDados( Component[] resultadosID ,int[] vector, int rondaDeJuego ){
@@ -125,11 +122,11 @@ if(rondaDeJuego == 1){
 
 
     public int totalGame(int puntajeRonda) {
-<<<<<<< HEAD
+
         puntajeTotal+=puntajeRonda;
-=======
+
          puntajeTotal += puntajeRonda;
->>>>>>> daae75cdd9aa7b1b9008838f00f5d9bc697b88fd
+
         if(puntajeRonda == 0){
             puntajeTotal = 0;
         }else{
