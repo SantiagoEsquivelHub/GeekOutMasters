@@ -65,6 +65,13 @@ public class ModelGeek {
         return tiro++;
     }
 
+    public int dadosEnVector(Component[] resultadosID , int[] vector, int rondaDeJuego ){
+        for (int i = 0; i < resultadosID.length; i++) {
+            vector[i] = ((Dado) resultadosID[i]).getId();
+        }
+        return vector.length;
+    }
+
 
     public int resultadoDados( Component[] resultadosID ,int[] vector, int rondaDeJuego ){
         int puntajePorRonda = 0;
