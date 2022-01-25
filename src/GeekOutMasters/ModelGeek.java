@@ -7,7 +7,7 @@ import java.awt.*;
 public class ModelGeek {
     //dado1 y dado2 son son los objetos que permiten mostrar el valor de la cara visible del dado
     private Dado dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10;
-    private int tiro , punto, estado, puntajeTotal;
+    private int tiro = 1 , punto, estado, puntajeTotal;
     private String[] estadoToString;
     public int[] dados, dadosActivos, dadosUtilizados;
     public Component[] resultadosID;
@@ -54,8 +54,12 @@ public class ModelGeek {
     }
 
     public int reset (){
-        return tiro =0;
+        return tiro = 0 ;
     }
+    public int resetPunto (){
+        return punto = 0 ;
+    }
+
 
     public int sigronda() {
         return tiro++;
@@ -63,10 +67,11 @@ public class ModelGeek {
 
 
     public int resultadoDados( Component[] resultadosID ,int[] vector, int rondaDeJuego ){
+        int puntajePorRonda = 0;
 if(rondaDeJuego == 1){
-    return 0;
+    return punto;
 }else {
-    int puntajePorRonda = 0;
+
 
     for (int i = 0; i < resultadosID.length; i++) {
         vector[i] = ((Dado) resultadosID[i]).getId();
@@ -74,49 +79,49 @@ if(rondaDeJuego == 1){
 
     for (int i = 0; i < vector.length; i++) {
         if (vector[i] == 1) {
-            puntajePorRonda++;
+            punto++;
         }
         if (vector[i] == 2) {
-            puntajePorRonda = 0;
+            punto = 0;
         }
     }
 
-    switch (puntajePorRonda) {
+    switch (punto) {
         case 0:
-            puntajePorRonda = 0;
+            punto = 0;
             break;
         case 1:
-            puntajePorRonda = 1;
+            punto = 1;
             break;
         case 2:
-            puntajePorRonda = 3;
+            punto = 3;
             break;
         case 3:
-            puntajePorRonda = 6;
+            punto = 6;
             break;
         case 4:
-            puntajePorRonda = 10;
+            punto = 10;
             break;
         case 5:
-            puntajePorRonda = 15;
+            punto = 15;
             break;
         case 6:
-            puntajePorRonda = 21;
+            punto = 21;
             break;
         case 7:
-            puntajePorRonda = 28;
+            punto = 28;
             break;
         case 8:
-            puntajePorRonda = 36;
+            punto = 36;
             break;
         case 9:
-            puntajePorRonda = 45;
+            punto = 45;
             break;
         case 10:
-            puntajePorRonda = 55;
+            punto = 55;
             break;
     }
-    return puntajePorRonda;
+    return punto;
 }
     }
 
