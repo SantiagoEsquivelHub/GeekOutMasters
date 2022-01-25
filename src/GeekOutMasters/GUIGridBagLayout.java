@@ -233,6 +233,10 @@ public class GUIGridBagLayout extends JFrame {
         constraints.fill=GridBagConstraints.NONE;
         constraints.anchor=GridBagConstraints.CENTER;
         this.add(resultados,constraints);
+        resultados.setText("Ronda "+ 0 +
+                "\nPuntuación Ronda "+ 0 +
+                "\nTotal acumulado "+ 0
+        );
 
 /*
         panelPerderGanar = new JPanel();
@@ -277,13 +281,14 @@ public class GUIGridBagLayout extends JFrame {
             int contadorRonda = modelGeek.getronda();
             int resultadoRonda = modelGeek.resultadoDados(resultadosID,resultadoDados, contadorRonda);
             int puntajeAcumulado = modelGeek.totalGame(resultadoRonda);
-            if(puntajeAcumulado > 6 && contadorRonda < 5){
+            if(puntajeAcumulado >= 6 && contadorRonda <= 5){
                 JOptionPane.showMessageDialog(null,
                         "GANASTE \n"
                         +"Obtuviste "+puntajeAcumulado +" puntos en menos de "+ contadorRonda +" rondas",
                         "PopUp Dialog",
                         JOptionPane.INFORMATION_MESSAGE);
-              contadorRonda = modelGeek.reset(); resultadoRonda = 0;  puntajeAcumulado = 0;
+              contadorRonda = modelGeek.reset(); resultadoRonda = modelGeek.resetPunto();  puntajeAcumulado = 0;
+              //lanzar.addActionListener(escucha);
             }
 
             if(contadorRonda == 6){
@@ -292,7 +297,8 @@ public class GUIGridBagLayout extends JFrame {
                                 +"Obtuviste "+puntajeAcumulado +" puntos en menos de "+ contadorRonda +" rondas",
                         "PopUp Dialog",
                         JOptionPane.INFORMATION_MESSAGE);
-                if(e.getSource() == lanzar){ contadorRonda = modelGeek.reset(); resultadoRonda = 0;  puntajeAcumulado = 0;
+                if(e.getSource() == lanzar){ contadorRonda = modelGeek.reset(); resultadoRonda = modelGeek.resetPunto();  puntajeAcumulado = 0;
+                   // lanzar.addActionListener(escucha);
                 }
             }
 
@@ -302,6 +308,7 @@ public class GUIGridBagLayout extends JFrame {
 
             if(e.getSource() == lanzar){
 
+                lanzar.removeActionListener(escucha);
                 imageDado1 = new ImageIcon(getClass().getResource("/resourses/"+dado1.getCara()+".jpeg"));
                 dado1.setIcon(imageDado1);
                 imageDado2 = new ImageIcon(getClass().getResource("/resourses/"+dado2.getCara()+".jpeg"));
