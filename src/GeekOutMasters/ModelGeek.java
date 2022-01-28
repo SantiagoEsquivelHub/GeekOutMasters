@@ -64,14 +64,72 @@ public class ModelGeek {
     public int sigronda() {
         return tiro++;
     }
+    /**
+    *Funcion que me garantiza que todos los dados de un vector de ID sea el 1, es decir,
+    el dado 42
+    */
 
-    public int dadosEnVector(Component[] resultadosID , int[] vector, int rondaDeJuego ){
-        for (int i = 0; i < resultadosID.length; i++) {
-            vector[i] = ((Dado) resultadosID[i]).getId();
+    public boolean todosSon42(int[] vector){
+        int tamaño = vector.length;
+        int contador42 = 0;
+
+        for (int i = 0; i < tamaño; i++) {
+           if(vector[i] == 1){
+               contador42++;
+           }
+           if(vector[i] != 1 && vector[i] != 2){
+
+           }
         }
-        return vector.length;
+
+        if(contador42 == tamaño){
+            return true;
+        }else{
+            return false;
+        }
+
+
+
     }
 
+    public boolean todosSonDragones(int[] vector){
+        int tamaño = vector.length;
+        int contadorDragon = 0;
+
+        for (int i = 0; i < tamaño; i++) {
+            if(vector[i] == 2){
+                contadorDragon++;
+            }
+        }
+
+        if(contadorDragon == tamaño){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+public boolean quedaSoloUnDadoDiferenteONinguno(int[] vector){
+        int tamaño = vector.length;
+
+            if(tamaño ==1 && vector[0]!=1){
+                return true;
+            }
+
+            if(tamaño == 0){
+            return true;
+    }
+
+    return false;
+}
+
+public int[] vectorDeId (Component[] resultadosID , int[] vector){
+    for (int i = 0; i < resultadosID.length; i++) {
+        vector[i] = ((Dado) resultadosID[i]).getId();
+    }
+    return vector;
+}
 
     public int resultadoDados( Component[] resultadosID ,int[] vector, int rondaDeJuego ){
         int puntajePorRonda = 0;
@@ -84,12 +142,13 @@ if(rondaDeJuego == 1){
         vector[i] = ((Dado) resultadosID[i]).getId();
     }
 
+    if (todosSonDragones(vector)==true) {
+        punto = 0;
+    }
+
     for (int i = 0; i < vector.length; i++) {
         if (vector[i] == 1) {
             punto++;
-        }
-        if (vector[i] == 2) {
-            punto = 0;
         }
     }
 

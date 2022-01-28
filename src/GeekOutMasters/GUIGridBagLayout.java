@@ -195,27 +195,7 @@ public class GUIGridBagLayout extends JFrame {
         constraints.anchor=GridBagConstraints.CENTER;
         this.add(panelDadosActivos,constraints);
 
-        resultadosID = panelDadosActivos.getComponents();
 
-
-/*
-        panelComponents = new JPanel();
-        panelComponents.setPreferredSize(new Dimension(600,250));
-        panelComponents.setBorder(BorderFactory.createTitledBorder("componenetes Dados Activos"));
-
-        panelComponents2 = new JTextArea(10, 40);
-        panelComponents2.setEditable(false);
-        panelComponents2.setBorder(BorderFactory.createTitledBorder("Array de componenter"));
-
-        constraints.gridx=0;
-        constraints.gridy=6;
-        constraints.gridwidth=2;
-        constraints.fill=GridBagConstraints.BOTH;
-        constraints.anchor=GridBagConstraints.CENTER;
-        this.add(panelComponents,constraints);
-        panelComponents.add(panelComponents2);
-
-*/
 
         lanzar = new JButton("Lanzar");
         lanzar.addActionListener(escucha);
@@ -226,7 +206,7 @@ public class GUIGridBagLayout extends JFrame {
         constraints.anchor=GridBagConstraints.CENTER;
         this.add(lanzar,constraints);
 
-        comprobar = new JButton("Comprobar");
+       comprobar = new JButton("Comprobar");
         constraints.gridx=1;
         constraints.gridy=4;
         constraints.gridwidth=1;
@@ -260,6 +240,7 @@ public class GUIGridBagLayout extends JFrame {
     private class Escucha implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+
             int contadorRonda = modelGeek.getronda();
             int resultadoRonda = modelGeek.resultadoDados(resultadosID,resultadoDados, contadorRonda);
             int puntajeAcumulado = modelGeek.totalGame(resultadoRonda);
@@ -289,8 +270,9 @@ public class GUIGridBagLayout extends JFrame {
 
 
             if(e.getSource() == lanzar){
-                comprobar.addMouseListener(escuchaComprobar);
-                /*lanzar.removeActionListener(escucha);*/
+
+
+                lanzar.removeActionListener(escucha);
                 imageDado1 = new ImageIcon(getClass().getResource("/resourses/"+dado1.getCara()+".jpeg"));
                 dado1.setIcon(imageDado1);
                 imageDado2 = new ImageIcon(getClass().getResource("/resourses/"+dado2.getCara()+".jpeg"));
@@ -328,6 +310,41 @@ public class GUIGridBagLayout extends JFrame {
                 panelDadosInactivos.add(dado9);
                 panelDadosInactivos.add(dado10);
 
+                resultadosID = panelDadosActivos.getComponents();
+                int[]dadosActivos = modelGeek.vectorDeId(resultadosID,resultadoDados);
+
+                /*Si en el vector de Dados Activos, TODOS (no importa cantidad) los dados con 42, SE PUEDE COMPROBAR*/
+                if(modelGeek.todosSon42(dadosActivos)== true){
+
+                    System.out.println("comprobe 42 ");
+                    comprobar.addMouseListener(escuchaComprobar);
+
+                    /*Si en el vector de Dados Activos SOLO hay 1 dado y sea cualquiera de los otros, SE PUEDE COMPROBAR*/
+                }else if(modelGeek.todosSonDragones(dadosActivos)== true){
+
+                    System.out.println("comprobe Dragones");
+                    comprobar.addMouseListener(escuchaComprobar);
+
+                }else if(modelGeek.quedaSoloUnDadoDiferenteONinguno(dadosActivos)== true){
+
+                    System.out.println("comprobe queda 1 o ningun dado");
+                    comprobar.addMouseListener(escuchaComprobar);
+
+                }/*else{
+
+                    System.out.println("vector de dados actual");
+                    System.out.println(dadosActivos[0]);
+                    System.out.println(dadosActivos[1]);
+                    System.out.println(dadosActivos[2]);
+                    System.out.println(dadosActivos[3]);
+                    System.out.println(dadosActivos[4]);
+                    System.out.println(dadosActivos[5]);
+                    System.out.println(dadosActivos[6]);
+                    System.out.println(dadosActivos[7]);
+                    System.out.println(dadosActivos[8]);
+                    System.out.println(dadosActivos[9]);
+                }*/
+
 
             }else{
                 if(e.getSource() == poderesDados){
@@ -349,32 +366,30 @@ public class GUIGridBagLayout extends JFrame {
             int puntajeAcumulado = modelGeek.totalGame(resultadoRonda);
 
 
-            /*
-            Si en el vector de Dados Activos, TODOS (no importa cantidad) los dados con 42, SE PUEDE COMPROBAR
-            Si en el vector de Dados Activos SOLO hay 1 dado y sea cualquiera de los otros, SE PUEDE COMPROBAR
 
-            * */
-
-
-            /*
-                if(puntajeAcumulado >= 6 && contadorRonda <= 5){
+                if (puntajeAcumulado >= 6 && contadorRonda <= 5) {
                     JOptionPane.showMessageDialog(null,
                             "GANASTE \n"
-                                    +"Obtuviste "+puntajeAcumulado +" puntos en menos de "+ contadorRonda +" rondas",
+                                    + "Obtuviste " + puntajeAcumulado + " puntos en menos de " + contadorRonda + " rondas",
                             "PopUp Dialog",
                             JOptionPane.INFORMATION_MESSAGE);
-                    contadorRonda = modelGeek.reset(); resultadoRonda = modelGeek.resetPunto();  puntajeAcumulado = 0;
-                    //lanzar.addActionListener(escucha);
+                    contadorRonda = modelGeek.reset();
+                    resultadoRonda = modelGeek.resetPunto();
+                    puntajeAcumulado = 0;
+                    lanzar.addActionListener(escucha);
                 }
 
-                if(contadorRonda == 6){
+                if (contadorRonda == 6) {
                     JOptionPane.showMessageDialog(null,
                             "PERDISTE \n"
-                                    +"Obtuviste "+puntajeAcumulado +" puntos en menos de "+ contadorRonda +" rondas",
+                                    + "Obtuviste " + puntajeAcumulado + " puntos en menos de " + contadorRonda + " rondas",
                             "PopUp Dialog",
                             JOptionPane.INFORMATION_MESSAGE);
-                    if(e.getSource() == lanzar){ contadorRonda = modelGeek.reset(); resultadoRonda = modelGeek.resetPunto();  puntajeAcumulado = 0;
-                        // lanzar.addActionListener(escucha);
+                    if (e.getSource() == lanzar) {
+                        contadorRonda = modelGeek.reset();
+                        resultadoRonda = modelGeek.resetPunto();
+                        puntajeAcumulado = 0;
+                        lanzar.addActionListener(escucha);
                     }
                 }
 
@@ -383,7 +398,7 @@ public class GUIGridBagLayout extends JFrame {
                         "\nPuntuación Ronda " + resultadoRonda +
                         "\nTotal acumulado " + puntajeAcumulado
                 );
-*/
+
 
         }
     }
@@ -412,6 +427,7 @@ public class GUIGridBagLayout extends JFrame {
 
                     dadoElegido.removeMouseListener(escuchaSuperHeroe);
                     panelDadosUtilizados.add(dadoElegido);
+                    panelDadosActivos.remove(dadoElegido); //PRUEBA
 
             }
             //COHETE
@@ -430,7 +446,7 @@ public class GUIGridBagLayout extends JFrame {
 
                     dadoElegido.removeMouseListener(escuchaCohete);
                     panelDadosUtilizados.add(dadoElegido);
-
+                    panelDadosActivos.remove(dadoElegido); //PRUEBA
                 }
 
             //MEEPLE
@@ -449,7 +465,7 @@ public class GUIGridBagLayout extends JFrame {
 
                 dadoElegido.removeMouseListener(escuchaMeeple);
                 panelDadosUtilizados.add(dadoElegido);
-
+                panelDadosActivos.remove(dadoElegido); //PRUEBA
             }
 
             //CORAZON
@@ -469,6 +485,7 @@ public class GUIGridBagLayout extends JFrame {
 
                 dadoElegido.removeMouseListener(escuchaCorazon);
                 panelDadosUtilizados.add(dadoElegido);
+                panelDadosActivos.remove(dadoElegido); //PRUEBA
 
             }
 
@@ -605,6 +622,7 @@ public class GUIGridBagLayout extends JFrame {
             if(dadoElegido.getId() == 5){//COHETE
 
                 panelDadosUtilizados.add(dadoElegido);
+                panelDadosActivos.remove(dadoElegido); //PRUEBA
                 dado1.removeMouseListener(escuchaCohete);
                 dado2.removeMouseListener(escuchaCohete);
                 dado3.removeMouseListener(escuchaCohete);
@@ -624,6 +642,7 @@ public class GUIGridBagLayout extends JFrame {
 
             }else if(dadoElegido.getId() == 3){//SUPERHEROE
                 panelDadosUtilizados.add(dadoElegido);
+                panelDadosActivos.remove(dadoElegido); //PRUEBA
                 dado1.removeMouseListener(escuchaCohete);
                 dado2.removeMouseListener(escuchaCohete);
                 dado3.removeMouseListener(escuchaCohete);
@@ -643,6 +662,7 @@ public class GUIGridBagLayout extends JFrame {
 
             }else if(dadoElegido.getId() == 4){//MEEPLE
                 panelDadosUtilizados.add(dadoElegido);
+                panelDadosActivos.remove(dadoElegido); //PRUEBA
                 dado1.removeMouseListener(escuchaCohete);
                 dado2.removeMouseListener(escuchaCohete);
                 dado3.removeMouseListener(escuchaCohete);
@@ -662,6 +682,7 @@ public class GUIGridBagLayout extends JFrame {
 
             }else if(dadoElegido.getId() == 6){//CORAZON
                 panelDadosUtilizados.add(dadoElegido);
+                panelDadosActivos.remove(dadoElegido); //PRUEBA
                 dado1.removeMouseListener(escuchaCohete);
                 dado2.removeMouseListener(escuchaCohete);
                 dado3.removeMouseListener(escuchaCohete);
@@ -685,6 +706,7 @@ public class GUIGridBagLayout extends JFrame {
 
             }else{//42 Y DRAGON
                 panelDadosUtilizados.add(dadoElegido);
+                panelDadosActivos.remove(dadoElegido); //PRUEBA
                 dado1.removeMouseListener(escuchaCohete);
                 dado2.removeMouseListener(escuchaCohete);
                 dado3.removeMouseListener(escuchaCohete);
@@ -805,27 +827,26 @@ public class GUIGridBagLayout extends JFrame {
                 panelDadosActivos.add(dadoElegido);
 
 
-            }else if(dadoElegido.getId() == 1 || dadoElegido.getId() == 2 ){//42 Y CORAZON
+            }else if(dadoElegido.getId() == 1 || dadoElegido.getId() == 2 ){//42 Y DRAGON
 
+                dado1.removeMouseListener(escuchaMeeple);
+                dado2.removeMouseListener(escuchaMeeple);
+                dado3.removeMouseListener(escuchaMeeple);
+                dado4.removeMouseListener(escuchaMeeple);
+                dado5.removeMouseListener(escuchaMeeple);
+                dado6.removeMouseListener(escuchaMeeple);
+                dado7.removeMouseListener(escuchaMeeple);
+
+                dado1.removeMouseListener(escuchaMeeple);
+                dado2.removeMouseListener(escuchaMeeple);
+                dado3.removeMouseListener(escuchaMeeple);
+                dado4.removeMouseListener(escuchaMeeple);
+                dado5.removeMouseListener(escuchaMeeple);
+                dado6.removeMouseListener(escuchaMeeple);
+                dado7.removeMouseListener(escuchaMeeple);
 
                 imagenDadoElegido = new ImageIcon(getClass().getResource("/resourses/"+dadoElegido.getCara()+".jpeg"));
                 dadoElegido.setIcon(imagenDadoElegido);
-
-                dado1.removeMouseListener(escuchaMeeple);
-                dado2.removeMouseListener(escuchaMeeple);
-                dado3.removeMouseListener(escuchaMeeple);
-                dado4.removeMouseListener(escuchaMeeple);
-                dado5.removeMouseListener(escuchaMeeple);
-                dado6.removeMouseListener(escuchaMeeple);
-                dado7.removeMouseListener(escuchaMeeple);
-
-                dado1.removeMouseListener(escuchaMeeple);
-                dado2.removeMouseListener(escuchaMeeple);
-                dado3.removeMouseListener(escuchaMeeple);
-                dado4.removeMouseListener(escuchaMeeple);
-                dado5.removeMouseListener(escuchaMeeple);
-                dado6.removeMouseListener(escuchaMeeple);
-                dado7.removeMouseListener(escuchaMeeple);
                 panelDadosActivos.add(dadoElegido);
             }else{
 
