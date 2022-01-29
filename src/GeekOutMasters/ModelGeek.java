@@ -4,17 +4,27 @@ package GeekOutMasters;
 import javax.swing.*;
 import java.awt.*;
 
+
+/**
+ * ModelGeek apply crabs Rules
+ * tiro = 5 End game
+ *
+ * @author Sebastian Rey Escobar and santiago Sanchez
+ * @version 1.0.0
+ * @date 28/01/2022
+ */
+
+
 public class ModelGeek {
-    //dado1 y dado2 son son los objetos que permiten mostrar el valor de la cara visible del dado
-    private Dado dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10;
-    private int tiro = 1, punto, estado, puntajeTotal;
-    private String[] estadoToString;
-    public int[] dados, dadosActivos, dadosUtilizados;
-    public Component[] resultadosID;
+
+    private int tiro = 1, punto, puntajeTotal;
 
 
     /**
      * Class Constructor
+     * @author Sebastian Rey Escobar and santiago sanchez
+     * @version 1.0.0
+     * @date: 25/01/2022
      */
 
     public ModelGeek() {
@@ -22,42 +32,62 @@ public class ModelGeek {
     }
 
     /**
-     * Establish the image according to each dice
+     *
+     * Establish the round when the game start
+     * @author Sebastian Rey Escobar and santiago sanchez
+     * @version 1.0.0
+     * @date: 25/01/2022
      */
 
-    public void calcularTiro() {
-        dado1.getCara();
-        dado2.getCara();
-        dado3.getCara();
-        dado4.getCara();
-        dado5.getCara();
-        dado6.getCara();
-        dado7.getCara();
-        dado8.getCara();
-        dado9.getCara();
-        dado10.getCara();
-    }
 
     public int getronda() {
+
         return tiro;
     }
 
+    /**
+     * Reset the round when i used all te powers of the craps in the round and loop the craps again
+     * @author Sebastian Rey Escobar and santiago sanchez
+     * @version 1.0.0
+     * @date: 25/01/2022
+     */
+
     public int reset() {
+
         return tiro = 0;
     }
 
+    /**
+     * Reset the point when i used all te powers of the craps in the round and loop the craps again
+     * @author Sebastian Rey Escobar and santiago sanchez
+     * @version 1.0.0
+     * @date: 25/01/2022
+     */
+
+
     public int resetPunto() {
+
         return punto = 0;
     }
 
+    /**
+     * go to the round when i used all te powers of the craps in the round and loop the craps again
+     * @author Sebastian Rey Escobar and santiago sanchez
+     * @version 1.0.0
+     * @date: 25/01/2022
+     */
 
     public int sigronda() {
+
         return tiro++;
     }
 
     /**
      * Funcion que me garantiza que todos los dados de un vector de ID sea el 1, es decir,
      * el dado 42
+     * @author Sebastian Rey Escobar and santiago sanchez
+     * @version 1.0.0
+     * @date: 25/01/2022
      */
 
     public boolean todosSon42(int[] vector) {
@@ -82,6 +112,13 @@ public class ModelGeek {
 
     }
 
+    /**
+     * Funcion que me garantiza que todos los dados de un vector de ID sea el , es decir,
+     * el dado Dragon
+     * @author Sebastian Rey Escobar and santiago sanchez
+     * @version 1.0.0
+     * @date: 25/01/2022
+     */
     public boolean todosSonDragones(int[] vector) {
         int tamaño = vector.length;
         int contadorDragon = 0;
@@ -100,6 +137,12 @@ public class ModelGeek {
 
     }
 
+    /**
+     * Method that extracts all the Ids from the vector of components and puts them in another vector of numbers
+     * @author Sebastian Rey Escobar and santiago sanchez
+     * @version 1.0.0
+     * @date: 28/01/2022
+     */
     public int[] componenteToVector(Component[] resultadosID, int[] vector, int rondaDeJuego){
         for (int i = 0; i < resultadosID.length; i++) {
             vector[i] = ((Dado) resultadosID[i]).getId();
@@ -108,6 +151,12 @@ public class ModelGeek {
         return vector;
     }
 
+    /**
+     * Method that extracts all the Ids from the vector of components and puts them in another vector of numbers
+     * @author Sebastian Rey Escobar and santiago sanchez
+     * @version 1.0.0
+     * @date: 28/01/2022
+     */
     public int[] vectorDeId(Component[] resultadosID, int[] vector) {
         for (int i = 0; i < resultadosID.length; i++) {
             vector[i] = ((Dado) resultadosID[i]).getId();
@@ -115,6 +164,14 @@ public class ModelGeek {
         return vector;
     }
 
+
+    /**
+     * Funcion que me garantiza que todos los dados de un vector de ID sea el , es decir,
+     * el dado Dragon
+     * @author Sebastian Rey Escobar and santiago sanchez
+     * @version 1.0.0
+     * @date: 28/01/2022
+     */
     public int resultadoDados(Component[] resultadosID, int[] vector, int rondaDeJuego) {
         int puntajePorRonda = 0;
         if (rondaDeJuego == 1) {
@@ -173,10 +230,14 @@ public class ModelGeek {
     }
 
 
+
+    /**
+     * Accumulates the total score of the round, plus the total score of the round.
+     * @author Sebastian Rey Escobar and santiago sanchez
+     * @version 1.0.0
+     * @date: 28/01/2022
+     */
     public int totalGame(int puntajeRonda) {
-
-        puntajeTotal += puntajeRonda;
-
         puntajeTotal += puntajeRonda;
 
         if (puntajeRonda == 0) {
@@ -188,12 +249,5 @@ public class ModelGeek {
     }
 
 
-    public void cambiarCara(Dado dadoEnviado) {
-        if (dadoEnviado.getId() == 1) {
-            dadoEnviado.getCaraContraria(); //cambia de id
-            JOptionPane.showMessageDialog(null, "funciona?");
-        } else {
 
-        }
-    }
 }

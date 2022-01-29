@@ -195,6 +195,11 @@ public class GUIGridBagLayout extends JFrame {
 
     }
 
+    /**
+     * Main process of the Java program
+     * @param args Object used in order to send input data from command line when
+     *             the program is execute by console.
+     */
     public static void main(String[] args){
         EventQueue.invokeLater(() -> {
             GUIGridBagLayout miProjectGUI = new GUIGridBagLayout();
@@ -284,8 +289,6 @@ public class GUIGridBagLayout extends JFrame {
                 resultadosID = panelDadosActivos.getComponents();
               /*  int[]dadosActivos = modelGeek.vectorDeId(resultadosID,resultadoDados);*/
 
-
-
 /*
                 System.out.println("Lo que me quedo de dados Activos");
                 System.out.print(dadosActivos[0]);
@@ -303,7 +306,6 @@ public class GUIGridBagLayout extends JFrame {
                 System.out.print(dadosActivos[6]);
                 System.out.println(" septimo dado");
                 System.out.println(" Array actualizado");*/
-
 
 
                 resultados.setText("Ronda "+ modelGeek.sigronda() +
@@ -381,8 +383,13 @@ public class GUIGridBagLayout extends JFrame {
         }
     }
 
-    //ESCUCHA QUE REDIRECCIONA A CADA DADO A SU RESPECTIVA ESCUCHA
+    /**ESCUCHA QUE REDIRECCIONA A CADA DADO A SU RESPECTIVA ESCUCHA
+     *
+     */
 
+    /**
+     * inner class that extends an Adapter Class or implements Listeners used by GUI class
+     */
     private class EscuchaBotones extends MouseAdapter {
         @Override
         public void mouseClicked(MouseEvent e) {

@@ -5,10 +5,11 @@ import java.awt.event.MouseListener;
 import java.util.Random;
 
 /**
- * Class Dado: Create a random value between 1 and 6
- * @author Sebastian Rey
+ * Class Dado: Create a random value between 1 and 6, and we can call this value, change for other and put a initial valua
+ *             that be changed while the game is running
+ * @authors Sebastian Rey and Santiago Sanchez
  * @version v.1.0.0
- * @date 13/01/2022
+ * @date 28/01/2022
  */
 
 public class Dado extends JLabel {
@@ -22,9 +23,9 @@ public class Dado extends JLabel {
     /**
      * method: generate a random value to cara
      * @return number Btween (1.6)
-     * @author Sebastian Rey
+     * @authors Sebastian Rey and Santiago Sanchez
      * @version v.1.0.0
-     * @date 13/01/2022
+     * @date 28/01/2022
      */
 
     public int getCara() {
@@ -35,9 +36,25 @@ public class Dado extends JLabel {
 
     }
 
+    /**
+     * method: change te value of the face of the crap
+     * @return number that we change for te value typed
+     * @authors Sebastian Rey and Santiago Sanchez
+     * @version v.1.0.0
+     * @date 28/01/2022
+     */
     public void cambiarId(int nuevoId){
         this.id = nuevoId;
     }
+
+
+    /**
+     * method: change te value according the value of this crap, according of the value of all the faces of the craps
+     * @return number Btween (1.6)
+     * @authors Sebastian Rey and Santiago Sanchez
+     * @version v.1.0.0
+     * @date 28/01/2022
+     */
 
     public void getCaraContraria() {
         if(id == 1){
@@ -57,24 +74,15 @@ public class Dado extends JLabel {
         }
     }
 
+    /**
+     * method: call the value id
+     * @return number
+     * @authors Sebastian Rey and Santiago Sanchez
+     * @version v.1.0.1
+     * @date 28/01/2022
+     */
     public int getId() {
         return id;
-    }
-
-
-    public void getFuncionalidad() {
-     /*   if(id == 3){
-            MouseListener escuchaSuperHeroe = null;
-            Dado.addMouseListener(escuchaSuperHeroe);
-        }else if(id == 4){
-            addMouseListener(escuchaMeeple);
-        }else if(id == 5){
-            addMouseListener(escuchaCohete);
-        }else if(id == 6){
-            addMouseListener(escuchaMeCorazon);
-        }else{
-            id = 0;
-        }*/
     }
 
 }
