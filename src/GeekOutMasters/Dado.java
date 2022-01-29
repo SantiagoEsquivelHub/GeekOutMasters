@@ -32,6 +32,11 @@ public class Dado extends JLabel {
         cara = aleatorio.nextInt(6)+1;
         this.id=cara;
         return cara;
+
+    }
+
+    public void cambiarId(int nuevoId){
+        this.id = nuevoId;
     }
 
     public void getCaraContraria() {
