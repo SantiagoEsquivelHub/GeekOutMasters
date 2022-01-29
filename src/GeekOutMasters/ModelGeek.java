@@ -4,6 +4,7 @@ package GeekOutMasters;
 import javax.swing.*;
 import java.awt.*;
 
+
 public class ModelGeek {
     //dado1 y dado2 son son los objetos que permiten mostrar el valor de la cara visible del dado
     private Dado dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10;
@@ -91,6 +92,21 @@ public class ModelGeek {
 
 
     }
+
+    public void resetLanzar (){
+        dado1.cambiarIdDado(1);
+        dado2.cambiarIdDado(1);
+        dado3.cambiarIdDado(1);
+        dado4.cambiarIdDado(1);
+        dado5.cambiarIdDado(1);
+        dado6.cambiarIdDado(1);
+        dado7.cambiarIdDado(1);
+        dado8.cambiarIdDado(1);
+        dado9.cambiarIdDado(1);
+        dado10.cambiarIdDado(1);
+    }
+
+
 
     public boolean todosSonDragones(int[] vector){
         int tamaño = vector.length;

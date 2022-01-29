@@ -56,6 +56,10 @@ public class Dado extends JLabel {
         return id;
     }
 
+    public void   cambiarIdDado (int nuevoID){
+        this.id=nuevoID;
+    }
+
 
     public void getFuncionalidad() {
      /*   if(id == 3){
