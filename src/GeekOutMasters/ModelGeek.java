@@ -9,7 +9,7 @@ import java.awt.*;
  * ModelGeek apply crabs Rules
  * tiro = 5 End game
  *
- * @author Sebastian Rey Escobar and santiago Sanchez
+ * @author Sebastian Rey Escobar and Santiago Sánchez Esquivel
  * @version 1.0.0
  * @date 28/01/2022
  */
@@ -22,7 +22,7 @@ public class ModelGeek {
 
     /**
      * Class Constructor
-     * @author Sebastian Rey Escobar and santiago sanchez
+     * @author Sebastian Rey Escobar and Santiago Sánchez Esquivel
      * @version 1.0.0
      * @date: 25/01/2022
      */
@@ -34,7 +34,7 @@ public class ModelGeek {
     /**
      *
      * Establish the round when the game start
-     * @author Sebastian Rey Escobar and santiago sanchez
+     * @author Sebastian Rey Escobar and Santiago Sánchez Esquivel
      * @version 1.0.0
      * @date: 25/01/2022
      */
@@ -47,7 +47,7 @@ public class ModelGeek {
 
     /**
      * Reset the round when i used all te powers of the craps in the round and loop the craps again
-     * @author Sebastian Rey Escobar and santiago sanchez
+     * @author Sebastian Rey Escobar and Santiago Sánchez Esquivel
      * @version 1.0.0
      * @date: 25/01/2022
      */
@@ -59,7 +59,7 @@ public class ModelGeek {
 
     /**
      * Reset the point when i used all te powers of the craps in the round and loop the craps again
-     * @author Sebastian Rey Escobar and santiago sanchez
+     * @author Sebastian Rey Escobar and Santiago Sánchez Esquivel
      * @version 1.0.0
      * @date: 25/01/2022
      */
@@ -83,9 +83,8 @@ public class ModelGeek {
     }
 
     /**
-     * Funcion que me garantiza que todos los dados de un vector de ID sea el , es decir,
-     * el dado Dragon
-     * @author Sebastian Rey Escobar and santiago sanchez
+     * Method that guarantees me that all the crap of an ID vector is only dragons
+     * @author Sebastian Rey Escobar and Santiago Sánchez Esquivel
      * @version 1.0.0
      * @date: 25/01/2022
      */
@@ -109,7 +108,7 @@ public class ModelGeek {
 
     /**
      * Method that extracts all the Ids from the vector of components and puts them in another vector of numbers
-     * @author Sebastian Rey Escobar and santiago sanchez
+     * @author Sebastian Rey Escobar and Santiago Sánchez Esquivel
      * @version 1.0.0
      * @date: 28/01/2022
      */
@@ -123,7 +122,7 @@ public class ModelGeek {
 
     /**
      * Method that extracts all the Ids from the vector of components and puts them in another vector of numbers
-     * @author Sebastian Rey Escobar and santiago sanchez
+     * @author Sebastian Rey Escobar and Santiago Sánchez Esquivel
      * @version 1.0.0
      * @date: 28/01/2022
      */
@@ -136,9 +135,8 @@ public class ModelGeek {
 
 
     /**
-     * Funcion que me garantiza que todos los dados de un vector de ID sea el , es decir,
-     * el dado Dragon
-     * @author Sebastian Rey Escobar and santiago sanchez
+     * Method that sends the total of the dice at the end of the round.
+     * @author Sebastian Rey Escobar and Santiago Sánchez Esquivel
      * @version 1.0.0
      * @date: 28/01/2022
      */
@@ -203,7 +201,7 @@ public class ModelGeek {
 
     /**
      * Accumulates the total score of the round, plus the total score of the round.
-     * @author Sebastian Rey Escobar and santiago sanchez
+     * @author Sebastian Rey Escobar and Santiago Sánchez Esquivel
      * @version 1.0.0
      * @date: 28/01/2022
      */
