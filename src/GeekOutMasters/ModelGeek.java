@@ -83,36 +83,6 @@ public class ModelGeek {
     }
 
     /**
-     * Funcion que me garantiza que todos los dados de un vector de ID sea el 1, es decir,
-     * el dado 42
-     * @author Sebastian Rey Escobar and santiago sanchez
-     * @version 1.0.0
-     * @date: 25/01/2022
-     */
-
-    public boolean todosSon42(int[] vector) {
-        int tamaño = vector.length;
-        int contador42 = 0;
-
-        for (int i = 0; i < tamaño; i++) {
-            if (vector[i] == 1) {
-                contador42++;
-            }
-            if (vector[i] != 1 && vector[i] != 2) {
-
-            }
-        }
-
-        if (contador42 == tamaño) {
-            return true;
-        } else {
-            return false;
-        }
-
-
-    }
-
-    /**
      * Funcion que me garantiza que todos los dados de un vector de ID sea el , es decir,
      * el dado Dragon
      * @author Sebastian Rey Escobar and santiago sanchez

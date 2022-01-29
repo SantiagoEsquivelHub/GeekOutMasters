@@ -11,7 +11,17 @@ public class GUIGridBagLayout extends JFrame {
     "Los otros 7 dados se tiran y pasan a ser los Dados Activos. \n"+
     "Se van eligiendo los dados a utilizar según las habilidades de sus caras y se pasan al sector de Dados Utilizados.\n"+
     "Si como último dado activo queda un Dragón, se perderán todos los puntos acumulados.\n"+
-    "Este juego lo jugará un único jugador y ganará si logra sumar 30 puntos en 5 rondas consecutivas de juego..";
+    "Este juego lo jugará un único jugador y ganará si logra sumar 30 puntos en 5 rondas consecutivas de juego..\n"
+                    +" 1 Dado 42 => 1 punto,\n" +
+                    " 2 Dado 42 => 3 puntos,\n" +
+                    " 3 Dado 42 => 6 puntos,\n" +
+                    " 4 Dado 42 => 10 punto,\n" +
+                    " 5 Dado 42 => 15 puntos,\n" +
+                    " 6 Dado 42 => 21 punto,\n" +
+                    " 7 Dado 42 => 28 puntos,\n" +
+                    " 8 Dado 42 => 36 puntos,\n" +
+                    " 9 Dado 42 => 45 punto,\n" +
+                    " 10 Dado 42 => 55 puntos,\n";
 
     public static final String MENSAJE_PODERES =
             "Geek Out! Masters es un juego de dados y cada una de las 6 caras de los mismos tienen 1 dibujo que permite al jugador hacer 1 acción especial:\n"+
@@ -27,7 +37,6 @@ public class GUIGridBagLayout extends JFrame {
     private JTextArea resultados;
     private JButton poderesDados, reglasJuego, lanzar;
     private Escucha escucha;
-    private EscuchaComprobar escuchaComprobar;
     private EscuchaBotones escuchaBotones;
     private EscuchaSuperHeroe escuchaSuperHeroe;
     private EscuchaCohete escuchaCohete;
@@ -62,7 +71,6 @@ public class GUIGridBagLayout extends JFrame {
 
         //Set up JComponents
         escucha = new Escucha();
-        escuchaComprobar = new EscuchaComprobar();
         escuchaBotones = new EscuchaBotones();
         escuchaSuperHeroe = new EscuchaSuperHeroe();
         escuchaCohete = new EscuchaCohete();
@@ -217,7 +225,7 @@ public class GUIGridBagLayout extends JFrame {
 
 
 
-            if (puntajeAcumulado >= 6 && contadorRonda <= 5) {
+            if (puntajeAcumulado >= 30 && contadorRonda <= 5) {
                 int opcion = JOptionPane.showConfirmDialog(null, "GANASTE \n"
                                 + "Obtuviste " + puntajeAcumulado + " puntos en menos de " + contadorRonda + " rondas\n"
                          + "¿Quienes volver a jugar?",
@@ -261,9 +269,6 @@ public class GUIGridBagLayout extends JFrame {
 
             if(e.getSource() == lanzar){
 
-                lanzar.removeActionListener(escucha); //NO DEJA LANZAR
-
-
                 imageDado1 = new ImageIcon(getClass().getResource("/resourses/"+dado1.getCara()+".jpeg"));
                 dado1.setIcon(imageDado1);
                 imageDado2 = new ImageIcon(getClass().getResource("/resourses/"+dado2.getCara()+".jpeg"));
@@ -287,26 +292,6 @@ public class GUIGridBagLayout extends JFrame {
 
 
                 resultadosID = panelDadosActivos.getComponents();
-              /*  int[]dadosActivos = modelGeek.vectorDeId(resultadosID,resultadoDados);*/
-
-/*
-                System.out.println("Lo que me quedo de dados Activos");
-                System.out.print(dadosActivos[0]);
-                System.out.println(" primer dado");
-                System.out.print(dadosActivos[1]);
-                System.out.println(" segundo dado");
-                System.out.print(dadosActivos[2]);
-                System.out.println(" tercer dado");
-                System.out.print(dadosActivos[3]);
-                System.out.println(" cuarto dado");
-                System.out.print(dadosActivos[4]);
-                System.out.println(" quinto dado");
-                System.out.print(dadosActivos[5]);
-                System.out.println(" sexto dado");
-                System.out.print(dadosActivos[6]);
-                System.out.println(" septimo dado");
-                System.out.println(" Array actualizado");*/
-
 
                 resultados.setText("Ronda "+ modelGeek.sigronda() +
                         "\nPuntuación Ronda "+ resultadoRonda +
@@ -338,50 +323,6 @@ public class GUIGridBagLayout extends JFrame {
         }
     }
 
-    private class EscuchaComprobar extends MouseAdapter{
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            int contadorRonda = modelGeek.getronda();
-            int resultadoRonda = modelGeek.resultadoDados(resultadosID,resultadoDados, contadorRonda);
-            int puntajeAcumulado = modelGeek.totalGame(resultadoRonda);
-
-
-/*
-                if (puntajeAcumulado >= 6 && contadorRonda <= 5) {
-                    JOptionPane.showMessageDialog(null,
-                            "GANASTE \n"
-                                    + "Obtuviste " + puntajeAcumulado + " puntos en menos de " + contadorRonda + " rondas",
-                            "PopUp Dialog",
-                            JOptionPane.INFORMATION_MESSAGE);
-                    contadorRonda = modelGeek.reset();
-                    resultadoRonda = modelGeek.resetPunto();
-                    puntajeAcumulado = 0;
-
-                }
-
-                if (contadorRonda == 6) {
-                    JOptionPane.showMessageDialog(null,
-                            "PERDISTE \n"
-                                    + "Obtuviste " + puntajeAcumulado + " puntos en menos de " + contadorRonda + " rondas",
-                            "PopUp Dialog",
-                            JOptionPane.INFORMATION_MESSAGE);
-                    if (e.getSource() == lanzar) {
-                        contadorRonda = modelGeek.reset();
-                        resultadoRonda = modelGeek.resetPunto();
-                        puntajeAcumulado = 0;
-
-                    }
-                }
-
-
-                resultados.setText("Ronda " + modelGeek.sigronda() +
-                        "\nPuntuación Ronda " + resultadoRonda +
-                        "\nTotal acumulado " + puntajeAcumulado
-                );
-*/
-
-        }
-    }
 
     /**ESCUCHA QUE REDIRECCIONA A CADA DADO A SU RESPECTIVA ESCUCHA
      *
@@ -479,6 +420,7 @@ public class GUIGridBagLayout extends JFrame {
             }
 
             resultadosID = panelDadosActivos.getComponents();
+            /*LOS ID DE LOS DADOS NO SALEN DEL VECTOR AL MOVERLOS DE JPANEL*/
             int[] vector2 = modelGeek.componenteToVector(resultadosID,resultadoDados, contadorRonda);
 
 
@@ -490,87 +432,6 @@ public class GUIGridBagLayout extends JFrame {
             System.out.println(vector2[4]);
             System.out.println(vector2[5]);
             System.out.println(vector2[6]);
-
-
-
-
-            int[]dadosActivos = modelGeek.vectorDeId(resultadosID,resultadoDados);
-
-            boolean dadoConPoder = false;
-
-            int contador42 = 0;
-
-
-            for(int i = 0; i < dadosActivos.length;i++){
-                if(dadosActivos[i] == 1 && dadosActivos.length ==1){//42
-                    dadoConPoder = false;
-                    break;
-                }
-                if(dadosActivos[i] == 2 && dadosActivos.length ==1){//DRAGON
-                    dadoConPoder = false;
-                    break;
-                }
-                if(dadosActivos[i] == 3){//SUPERHEROE
-
-                    dadoConPoder = true;
-                    break;
-                }
-                if(dadosActivos[i] == 4){//MEEPLE
-                    dadoConPoder = true;
-                    break;
-                }
-                if(dadosActivos[i] == 5){//COHETE
-                    dadoConPoder = true;
-                    break;
-                }
-                if(dadosActivos[i] == 6){//CORAZOM
-                    dadoConPoder = true;
-                    break;
-                }
-            }
-
-            if(dadoConPoder){
-                JOptionPane.showMessageDialog(null, "TIENES DADOS CON PODERES \n"
-                                + "Debes seguir jugando.",
-                        "PopUp Dialog", JOptionPane.YES_NO_OPTION);
-
-            }else{
-
-
-                int opcion = JOptionPane.showConfirmDialog(null, "NO TIENES MAS PODERES \n"
-                                + "Obtuviste " + resultadoRonda + " puntos. "
-                        + "Puedes volver a lanzar los dados y seguir jugando, o salir del juego",
-                        "PopUp Dialog", JOptionPane.YES_NO_OPTION);
-                if(opcion == JOptionPane.YES_OPTION){
-                    lanzar.addActionListener(escucha);
-                }else{
-                    if(opcion == JOptionPane.NO_OPTION){
-                        System.exit(0);
-                    }
-                }
-                lanzar.addActionListener(escucha);
-
-            }
-
-           /* System.out.println("Lo que me quedo de dados Activos");
-            System.out.print(dadosActivos[0]);
-            System.out.println(" primer dado");
-            System.out.print(dadosActivos[1]);
-            System.out.println(" segundo dado");
-            System.out.print(dadosActivos[2]);
-            System.out.println(" tercer dado");
-            System.out.print(dadosActivos[3]);
-            System.out.println(" cuarto dado");
-            System.out.print(dadosActivos[4]);
-            System.out.println(" quinto dado");
-            System.out.print(dadosActivos[5]);
-            System.out.println(" sexto dado");
-            System.out.print(dadosActivos[6]);
-            System.out.println(" septimo dado");
-            System.out.print(dadosActivos[7]);
-            System.out.println(" inexistente dado");
-            System.out.println(" Array actualizado");*/
-
             revalidate();
             repaint();
         }
